@@ -1,7 +1,33 @@
 *.class
 
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
 # Package Files #
 *.jar
