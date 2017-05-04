@@ -63,6 +63,7 @@ public class MaxSubArray {
      * 用递归方法进行分解合并：
      * 因为没有限制所以递推最后一层的时候是单个元素
      * 然后递归的时候进行解决合并
+     *
      * @param sub
      * @param low
      * @param high
