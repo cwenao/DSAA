@@ -7,7 +7,10 @@ package com.cwenao.datastructure;
 import java.util.Arrays;
 
 /**
- *
+ * 用分治法的思想进行分解
+ * 然后针对最小解决值进行合并
+ * 归并的默认两个合并的序列已经进行排序
+ * 只需要依次比较两个序列中的大小即可
  * @author cwenao
  * @version $Id ConflationSort.java, v 0.1 2017-05-01 16:16 cwenao Exp $$
  */

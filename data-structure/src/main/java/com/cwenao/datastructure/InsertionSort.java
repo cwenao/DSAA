@@ -6,6 +6,8 @@ package com.cwenao.datastructure;
 
 /**
  * Insertion Sort
+ * 插入排序：从顶部取元素，然后循环遍历与当前值比较
+ * 如果符合条件则插入，其他元素依次后移
  * @author cwenao
  * @version $Id InsertionSort.java, v 0.1 2017-05-01 14:41 cwenao Exp $$
  */
