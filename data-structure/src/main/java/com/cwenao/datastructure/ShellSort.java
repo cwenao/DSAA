@@ -4,6 +4,10 @@
  */
 package com.cwenao.datastructure;
 
+import edu.princeton.cs.introcs.StdDraw;
+
+import java.awt.*;
+
 /**
  * 希尔排序
  * @author cwenao
@@ -41,10 +45,12 @@ public class ShellSort {
     public static void main(String[] args) {
 
         int[] shellArray = new int[]{10, 8, 11, 2, 6, 99, 1, 100, 104, 55, 3, 4, 44, 108, 300, 33};
-
-        int[] she = shell(shellArray);
-        for (int x : she) {
-            System.out.println(x);
+        shell(shellArray);
+        int n = shellArray.length * 5;
+        for (int x =0; x< shellArray.length; x++) {
+           System.out.println(x);
+           StdDraw.setPenColor(Color.blue);
+           StdDraw.filledRectangle( 1.0 * x / n,shellArray[x]/200.0,0.5/n,shellArray[x] /200.0);
         }
     }
 
