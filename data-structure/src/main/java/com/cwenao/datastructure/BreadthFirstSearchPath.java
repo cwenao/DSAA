@@ -16,7 +16,7 @@ import java.util.Queue;
  */
 public class BreadthFirstSearchPath {
 
-    private static final int maxVertexes = 5;
+    private static final int maxVertexes = 9;
     private static Vertexes[] vertexes;
     private static int[][] adjacent;
 
@@ -26,23 +26,37 @@ public class BreadthFirstSearchPath {
 
         while (!queue.isEmpty()) {
             int x = (int) queue.poll();
-            printVertexe(x);
-            for(int i =1;i<maxVertexes;i++) {
-                if (adjacent[x][i] != 1 && vertexes[x].getVisited() == false) {
-                    vertexes[x].setVisited(true);
+            vertexes[x].setVisited(true);
+
+            for(int i =0;i<maxVertexes;i++) {
+                if (adjacent[x][i] == 1 && vertexes[i].getVisited() == false) {
+                    printVertexe(i);
+                    vertexes[i].setVisited(true);
                     queue.offer(i);
                 }
             }
+
         }
     }
 
     private static void printVertexe(int i) {
         System.out.println(vertexes[i].getVertex() + " ");
     }
+
+    public static void printAdjacent(int[][] adjacent) {
+
+        for(int[] line:adjacent) {
+            for(int i:line) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         DrawGraphForSearch drawGraphForSearch = new DrawGraphForSearch(maxVertexes);
 
-        char[] ver = {'A','B','C','D','E'}; //,'D','E','F','G','H','I'
+        char[] ver = {'A','B','C','D','E','F','G','H','I'};
 
         vertexes = drawGraphForSearch.getVertexes();
 
@@ -50,14 +64,20 @@ public class BreadthFirstSearchPath {
             Vertexes vertexesX = new Vertexes(ver[i]);
             vertexes[i] = vertexesX;
         }
+
         drawGraphForSearch.addEdge(0,1);
         drawGraphForSearch.addEdge(0,2);
+        drawGraphForSearch.addEdge(1,2);
         drawGraphForSearch.addEdge(2,3);
+        drawGraphForSearch.addEdge(2,5);
         drawGraphForSearch.addEdge(3,5);
         drawGraphForSearch.addEdge(5,8);
 
         drawGraphForSearch.setVertexes(vertexes);
         adjacent = drawGraphForSearch.getAdjacent();
+
+        printAdjacent(adjacent);
+
         entrySearar(0);
 
     }
