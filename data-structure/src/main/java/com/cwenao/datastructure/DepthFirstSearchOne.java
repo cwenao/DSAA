@@ -36,9 +36,10 @@ public class DepthFirstSearchOne {
      */
     private static void traverse(int i) {
         vertexes[i].setVisited(true);
+
         for(int j =0;j<maxVertexes;j++) {
             if (adjacent[i][j] == 1 && vertexes[j].getVisited() == false) {
-                printVertexe(i);
+                printVertexe(j);
                 traverse(j);
             }
         }
@@ -46,6 +47,16 @@ public class DepthFirstSearchOne {
 
     private static void printVertexe(int i) {
         System.out.println(vertexes[i].getVertex() + " ");
+    }
+
+    public static void printAdjacent(int[][] adjacent) {
+
+        for(int[] line:adjacent) {
+            for(int i:line) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
@@ -59,14 +70,18 @@ public class DepthFirstSearchOne {
             Vertexes vertexesX = new Vertexes(ver[i]);
             vertexes[i] = vertexesX;
         }
+        drawGraphForSearch.setVertexes(vertexes);
+
         drawGraphForSearch.addEdge(0,1);
         drawGraphForSearch.addEdge(0,2);
         drawGraphForSearch.addEdge(2,3);
         drawGraphForSearch.addEdge(3,5);
         drawGraphForSearch.addEdge(5,8);
 
-        drawGraphForSearch.setVertexes(vertexes);
         adjacent = drawGraphForSearch.getAdjacent();
+
+        printAdjacent(adjacent);
+        printVertexe(0);
         DFSOneTraverse();
     }
 }
