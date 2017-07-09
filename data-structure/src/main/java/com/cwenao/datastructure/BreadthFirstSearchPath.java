@@ -79,7 +79,6 @@ public class BreadthFirstSearchPath {
         printAdjacent(adjacent);
 
         entrySearar(0);
-
     }
 }
 
