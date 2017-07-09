@@ -15,10 +15,6 @@ public class DrawGraphForSearch {
 
     private int vertexNum;
 
-    public DrawGraphForSearch() {
-
-    }
-
     /**
      * 初始化
      * @param vertexNum
