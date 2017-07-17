@@ -36,6 +36,23 @@ public class OperationArray<E> {
         }
     }
 
+    public int serachOnSortArray(int[] array, int low, int high, int key) {
+        if (high < low) {
+            return -1;
+        }
+
+        int mid = (low + high) / 2;
+        if (array[mid] == key) {
+            return mid;
+        }
+        if (array[mid] < key) {
+            return serachOnSortArray(array, mid + 1, high, key);
+        } else {
+            return serachOnSortArray(array, low, mid - 1, key);
+        }
+    }
+
+
     public static void main(String[] args) {
         OperationArray<Integer> operationArray = new OperationArray<>();
         Integer[] array = {1, 2, 3, 5, 4, 6, 7, 8};
@@ -50,6 +67,12 @@ public class OperationArray<E> {
         operationArray.deleteOnUnSortArray(array, 4, len);
 
         System.out.println(operationArray.searchOnUnSortArray(array, len, 100));
+
+        int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int sortedLen = sortedArray.length;
+        int low = 0;
+        int high = sortedLen - 1;
+        System.out.println(operationArray.serachOnSortArray(sortedArray, low, high, 3));
 
     }
 
