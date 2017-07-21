@@ -52,10 +52,46 @@ public class OperationArray<E> {
         }
     }
 
+    private int gcd(int index, int size) {
+        if (size == 0) {
+            return index;
+        }
+        return gcd(size, index % size);
+    }
 
+    public void rotateArray(int[] array, int index) {
+        int tmp;
+        int j;
+        int k;
+
+        for(int i=0; i< gcd(index,array.length);i++) {
+            tmp = array[i];
+            j = i;
+
+            while (true) {
+                k = j + index;
+                if (k >= array.length) {
+                    k = k - array.length;
+                }
+                if (k == i) {
+                    break;
+                }
+                array[i] = array[k];
+                j = k;
+            }
+            array[j] = tmp;
+        }
+        printArray(array);
+    }
+
+    private void printArray(int[] array) {
+        for (int x : array) {
+            System.out.println(x);
+        }
+    }
     public static void main(String[] args) {
         OperationArray<Integer> operationArray = new OperationArray<>();
-        Integer[] array = {1, 2, 3, 5, 4, 6, 7, 8};
+        /*Integer[] array = {1, 2, 3, 5, 4, 6, 7, 8};
         int len = array.length;
 
         System.out.println(operationArray.searchOnUnSortArray(array, len, 3));
@@ -67,13 +103,13 @@ public class OperationArray<E> {
         operationArray.deleteOnUnSortArray(array, 4, len);
 
         System.out.println(operationArray.searchOnUnSortArray(array, len, 100));
-
+*/
         int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        int sortedLen = sortedArray.length;
+       /* int sortedLen = sortedArray.length;
         int low = 0;
         int high = sortedLen - 1;
-        System.out.println(operationArray.serachOnSortArray(sortedArray, low, high, 3));
-
+        System.out.println(operationArray.serachOnSortArray(sortedArray, low, high, 3));*/
+        operationArray.rotateArray(sortedArray, 3);
     }
 
 }
