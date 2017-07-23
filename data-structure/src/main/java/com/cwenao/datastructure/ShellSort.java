@@ -4,8 +4,6 @@
  */
 package com.cwenao.datastructure;
 
-import edu.princeton.cs.introcs.StdDraw;
-
 import java.awt.*;
 
 /**
@@ -49,8 +47,6 @@ public class ShellSort {
         int n = shellArray.length * 5;
         for (int x =0; x< shellArray.length; x++) {
            System.out.println(x);
-           StdDraw.setPenColor(Color.blue);
-           StdDraw.filledRectangle( 1.0 * x / n,shellArray[x]/200.0,0.5/n,shellArray[x] /200.0);
         }
     }
 
