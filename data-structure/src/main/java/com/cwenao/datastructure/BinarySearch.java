@@ -5,6 +5,7 @@
 package com.cwenao.datastructure;
 
 /**
+ * 在二分查找的按照数组有序进行
  * @author cwenao
  * @version $Id BinarySearch.java, v 0.1 2017-07-18 13:12 cwenao Exp $$
  */
