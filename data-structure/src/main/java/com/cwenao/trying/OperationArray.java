@@ -4,6 +4,9 @@
  */
 package com.cwenao.trying;
 
+import com.cwenao.common.annotation.AuxiliarySpace;
+import com.cwenao.common.annotation.TimeComplexity;
+
 /**
  * @author cwenao
  * @version $Id OperationArray.java, v 0.1 2017-07-11 8:24 cwenao Exp $$
@@ -59,6 +62,13 @@ public class OperationArray<E> {
         return gcd(size, index % size);
     }
 
+    /**
+     * 求GCD（最大共因子算法）
+     * @param array
+     * @param index
+     */
+    @TimeComplexity("O(n*index)")
+    @AuxiliarySpace("O(1)")
     public void rotateArray(int[] array, int index) {
         int tmp;
         int j;
@@ -83,6 +93,7 @@ public class OperationArray<E> {
         }
         printArray(array);
     }
+
 
     private void printArray(int[] array) {
         for (int x : array) {

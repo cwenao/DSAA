@@ -4,6 +4,9 @@
  */
 package com.cwenao.datastructure;
 
+import com.cwenao.common.annotation.AuxiliarySpace;
+import com.cwenao.common.annotation.TimeComplexity;
+
 /**
  * 在二分查找的按照数组有序进行
  * @author cwenao
@@ -11,6 +14,8 @@ package com.cwenao.datastructure;
  */
 public class BinarySearch {
 
+    @TimeComplexity("O(log n)")
+    @AuxiliarySpace("O(1)")
     private static int recursionBinarySearch(int[] array, int targetNum, int low, int high) {
 
         if (array == null || array.length == 0) {
