@@ -2,7 +2,7 @@
  * Company
  * Copyright (C) 2014-2017 All Rights Reserved.
  */
-package com.cwenao.datastructure;
+package com.cwenao.datastructure.baseimplement;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
