@@ -4,6 +4,8 @@
  */
 package com.cwenao.datastructure.tree;
 
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * @author cwenao
  * @version $Id BaseBinaryTree.java, v 0.1 2017-07-27 23:54 cwenao Exp $$
@@ -101,7 +103,7 @@ public class BaseBinaryTree<T extends Comparable> implements BaseTree<T> {
 
     @Override
     public int size() {
-        return 0;
+        return size(root);
     }
 
     /**
@@ -141,5 +143,129 @@ public class BaseBinaryTree<T extends Comparable> implements BaseTree<T> {
         } else {
             return true;
         }
+    }
+
+    /**
+     * 先序遍历：先遍历根节点再遍历左子树，如左子树有子节点则继续遍历，左子树遍历完成后
+     * 遍历右子树
+     * @param node
+     * @return
+     */
+    public String preOrderTraversal(BinaryNode<T> node) {
+        if (node != null) {
+            return "";
+        }
+        StringBuffer preOrderBuffer = new StringBuffer();
+
+        preOrderBuffer.append(node.getData() + ",");
+        preOrderBuffer.append(preOrderTraversal(node.getLeftNode()));
+        preOrderBuffer.append(preOrderTraversal(node.getRightNode()));
+
+        return preOrderBuffer.toString();
+    }
+
+    /**
+     * 中序遍历：先遍历左子树再遍历根节点再遍历右子树
+     * @param node
+     * @return
+     */
+    public String inOrderTraversal(BinaryNode<T> node) {
+        if (node == null) {
+            return "";
+        }
+        StringBuffer inOrderBuffer = new StringBuffer();
+
+        inOrderBuffer.append(inOrderTraversal(node.getLeftNode()));
+        inOrderBuffer.append(node.getData() + ",");
+        inOrderBuffer.append(inOrderTraversal(node.getRightNode()));
+
+        return inOrderBuffer.toString();
+    }
+
+    /**
+     * 后序遍历：先遍历左子树再遍历右子树再遍历根节点
+     * @param node
+     * @return
+     */
+    public String postOrderTraversal(BinaryNode<T> node) {
+        if (node == null) {
+            return "";
+        }
+        StringBuffer postOrderBuffer = new StringBuffer();
+
+        postOrderBuffer.append(postOrderTraversal(node.getLeftNode()));
+        postOrderBuffer.append(postOrderTraversal(node.getRightNode()));
+        postOrderBuffer.append(node.getData());
+
+        return postOrderBuffer.toString();
+    }
+
+    /**
+     * 层序遍历：借助队列将根节点的左右子树存入队列，然后再取出队列第一个
+     * @return
+     */
+    public String levelOrderTraversal()  {
+
+        //用于存储当前节点的子节点
+        LinkedBlockingQueue<BinaryNode<T>> nodeQueue = new LinkedBlockingQueue();
+
+        StringBuffer levelOrderBuffer = new StringBuffer();
+
+        BinaryNode<T> node = this.root;
+
+        while (node != null) {
+            levelOrderBuffer.append(node.getData());
+
+            if (node.getLeftNode() != null) {
+                nodeQueue.add(node.getLeftNode());
+            }
+            if (node.getRightNode() != null) {
+                nodeQueue.add(node.getRightNode());
+            }
+            node = nodeQueue.poll();
+        }
+        return levelOrderBuffer.toString();
+    }
+
+    /**
+     * 先序遍历序列与中序遍历序列确定二叉树
+     * 先序遍历：确定根节点与子节点关系（根节点-左节点-右节点）
+     * 中序遍历：确认左右子节点关系（左节点-根节点-右节点）
+     * @param preOrder
+     * @param preOrderStart
+     * @param preOrderEnd
+     * @param inOrder
+     * @param inOrderStart
+     * @param inOrderEnd
+     * @return
+     */
+    public BinaryNode<T> createTreeByPreOrderAndInOrder(T[] preOrder, int preOrderStart, int preOrderEnd, T[] inOrder, int inOrderStart, int inOrderEnd) {
+
+        BinaryNode<T> node = new BinaryNode<T>(preOrder[preOrderStart]);
+
+        if (preOrderStart == preOrderEnd && inOrderStart == inOrderEnd) {
+            return node;
+        }
+
+        int inOrderRoot;
+
+        for(inOrderRoot = preOrderStart;inOrderRoot<inOrderEnd;inOrderRoot++) {
+            //先序遍历中根节点在中序遍历中的位置
+            if (preOrder[preOrderStart].compareTo(inOrder[inOrderRoot]) == 0) {
+                break;
+            }
+        }
+
+        //获取中序遍历中左右子树的长度
+        int leftLen = inOrderRoot - inOrderStart;
+        int rightLen = inOrderEnd - inOrderRoot;
+
+        if (leftLen > 0) {
+            node.setLeftNode(createTreeByPreOrderAndInOrder(preOrder, preOrderStart + 1, preOrderStart + leftLen, inOrder, inOrderStart, inOrderRoot - 1));
+        }
+        if (rightLen > 0) {
+            node.setRightNode(createTreeByPreOrderAndInOrder(preOrder, preOrderStart + leftLen + 1, preOrderEnd, inOrder, inOrderRoot + 1, inOrderEnd));
+        }
+        return node;
     }
 }
