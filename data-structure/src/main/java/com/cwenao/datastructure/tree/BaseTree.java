@@ -18,5 +18,11 @@ public interface BaseTree<T extends Comparable> {
 
     void remove(T data);
 
+    int height();
+
+    BinaryNode<T> findExcludeLeftNode(BinaryNode<T> node);
+
+    BinaryNode<T> findExcludeRightNode(BinaryNode<T> node);
+
     BinaryNode<T> findNode(T data);
 }

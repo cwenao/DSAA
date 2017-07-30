@@ -7,14 +7,23 @@ package com.cwenao.datastructure.tree;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+ * 二叉查找树（binary search tree）
+ * 对于每个节点T都存在：
+ * 1. 左子树中的所有项的值都小于T的值
+ * 2. 右子树中的所有项的值都大于T的值
+ *
+ * 完全二叉树：一棵具有n个结点的完全二叉树，对于序号为i(0≤i＜n)的结点
+ * 1. 如i=0，则i为根结点；i>0，则i的父母结点序号为(i−1)/2 向下取整。
+ * 2. 如2i+1＜n,则i的左子树结点序号为2i+1，否则i无左子树。
+ * 3. 如2i+2＞n,则i的右子树结点序号为2i+2，否则i无右子树
  * @author cwenao
- * @version $Id BaseBinaryTree.java, v 0.1 2017-07-27 23:54 cwenao Exp $$
+ * @version $Id BaseBinarySearchTree.java, v 0.1 2017-07-27 23:54 cwenao Exp $$
  */
-public class BaseBinaryTree<T extends Comparable> implements BaseTree<T> {
+public  class BaseBinarySearchTree<T extends Comparable> implements BaseTree<T>{
 
     protected BinaryNode<T> root;
 
-    public BaseBinaryTree() {
+    public BaseBinarySearchTree() {
         root = null;
     }
 
@@ -86,7 +95,8 @@ public class BaseBinaryTree<T extends Comparable> implements BaseTree<T> {
      * @param node
      * @return
      */
-    private BinaryNode<T> findExcludeLeftNode(BinaryNode<T> node) {
+    @Override
+    public BinaryNode<T> findExcludeLeftNode(BinaryNode<T> node) {
         if (node == null) {
             return null;
         }
@@ -94,6 +104,22 @@ public class BaseBinaryTree<T extends Comparable> implements BaseTree<T> {
             return node;
         }
         return findExcludeLeftNode(node.getLeftNode());
+    }
+
+    /**
+     * 获取没有右节点的子树
+     * @param node
+     * @return
+     */
+    @Override
+    public BinaryNode<T> findExcludeRightNode(BinaryNode<T> node) {
+        if (node == null) {
+            return null;
+        }
+        if (node.getRightNode() == null) {
+            return node;
+        }
+        return findExcludeRightNode(node.getRightNode());
     }
 
     @Override
@@ -116,6 +142,26 @@ public class BaseBinaryTree<T extends Comparable> implements BaseTree<T> {
             return 0;
         }
         return size(childNode.getLeftNode()) + 1 + size(childNode.getRightNode());
+    }
+
+    @Override
+    public int height() {
+        return height(root);
+    }
+
+    /**
+     * 获取树的高度
+     * @param node
+     * @return
+     */
+    public int height(BinaryNode<T> node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftLen = height(node.getLeftNode());
+        int right = height(node.getRightNode());
+
+        return leftLen > right ? leftLen + 1 : right + 1;
     }
 
     @Override
