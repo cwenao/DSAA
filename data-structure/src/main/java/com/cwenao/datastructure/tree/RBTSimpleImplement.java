@@ -45,7 +45,7 @@ public class RBTSimpleImplement<T extends Comparable> implements Serializable {
             leftRotation(node);
         }
 
-        if (isRed(node.getLeftNode()) && !isRed(node.getRightNode())) {
+        if (isRed(node.getLeftNode()) && isRed(node.getLeftNode().getLeftNode())) {
             rightRotation(node);
         }
 
