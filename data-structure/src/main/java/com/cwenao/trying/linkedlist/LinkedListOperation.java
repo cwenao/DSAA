@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 /**
  * @author cwenao
- * @version $Id LinkedInsertion.java, v 0.1 2017-08-06 23:08 cwenao Exp $$
+ * @version $Id LinkedListOperation.java, v 0.1 2017-08-06 23:08 cwenao Exp $$
  */
-public class LinkedInsertion<T extends Comparable> implements Serializable {
+public class LinkedListOperation<T extends Comparable> implements Serializable {
 
     private LinkedNode<T> head;
 
@@ -49,6 +49,19 @@ public class LinkedInsertion<T extends Comparable> implements Serializable {
         preNode.setNext(node);
     }
 
+    public void deleteNode(T data) {
+        LinkedNode<T> tmp, preNode = null;
+        tmp = head;
+        while (tmp != null && tmp.getData() != data) {
+            preNode = tmp;
+            tmp = tmp.getNext();
+        }
+        if (tmp == null) {
+            return;
+        }
+        preNode.setNext(tmp.getNext());
+    }
+
     private void printLinkedList() {
         LinkedNode<T> tmp = head;
         while (tmp != null) {
@@ -58,7 +71,7 @@ public class LinkedInsertion<T extends Comparable> implements Serializable {
     }
 
     public static void main(String[] args) {
-        LinkedInsertion<Integer> linkedInsertion = new LinkedInsertion<>();
+        LinkedListOperation<Integer> linkedInsertion = new LinkedListOperation<>();
         linkedInsertion.append(22);
         linkedInsertion.append(90);
 
