@@ -57,6 +57,32 @@ public class RBTSimpleImplement<T extends Comparable> implements Serializable {
     }
 
     /**
+     * 给定key进行查询
+     * @param data
+     * @return
+     */
+    public RBTNode<T> search(T data) {
+        return search(rbtRoot, data);
+    }
+
+    private RBTNode<T> search(RBTNode<T> node, T data) {
+
+        if (node == null) {
+            return null;
+        }
+        int left = node.getData().compareTo(data);
+
+        if (left < 0) {
+            return search(node.getLeftNode(), data);
+        } else if (left > 0) {
+            return search(node.getRightNode(), data);
+        } else {
+            return node;
+        }
+    }
+
+
+    /**
      * 沿着需要变化的节点记性逆时针旋转
      * @param node
      */
