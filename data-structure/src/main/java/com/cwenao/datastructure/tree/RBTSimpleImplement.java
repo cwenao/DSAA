@@ -4,6 +4,8 @@
  */
 package com.cwenao.datastructure.tree;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.io.Serializable;
 
 /**
@@ -82,6 +84,60 @@ public class RBTSimpleImplement<T extends Comparable> implements Serializable {
     }
 
 
+    public void deleteNode(T data) {
+        if (!isRed(rbtRoot.getLeftNode()) && !isRed(rbtRoot.getRightNode())) {
+            rbtRoot.setColor(RED);
+        }
+        rbtRoot = deleteNode(rbtRoot, data);
+    }
+
+    private RBTNode<T> deleteNode(RBTNode<T> node, T data) {
+        int left = node.getData().compareTo(data);
+        if (left > 0) {
+            if (!isRed(node.getLeftNode()) && !isRed(node.getLeftNode().getLeftNode())) {
+                node = moveRedLeft(node);
+            }
+            node.setLeftNode(deleteNode(node.getLeftNode(), data));
+        } else {
+            if (isRed(node.getLeftNode())) {
+                node = rightRotation(node);
+            }
+            if (data.compareTo(node.getData()) == 0 && node.getRightNode() == null) {
+                return null;
+            }
+
+            if (!isRed(node.getRightNode()) && !isRed(node.getRightNode().getLeftNode())) {
+                node = moveRedRight(node);
+            }
+            if (data.compareTo(node.getData()) == 0) {
+                RBTNode<T> delNode = min(node);
+                node.setData(delNode.getData());
+                node.setRightNode(deleteMin(node.getRightNode()));
+            } else {
+                node.setRightNode(deleteNode(node.getRightNode(),data));
+            }
+        }
+        return balance(node);
+    }
+
+    private RBTNode<T>  deleteMin(RBTNode<T>  node) {
+        if (node.getLeftNode() == null)
+            return null;
+
+        if (!isRed(node.getLeftNode()) && !isRed(node.getLeftNode().getLeftNode()))
+            node = moveRedLeft(node);
+
+        node.setLeftNode(deleteMin(node.getLeftNode()));
+        return balance(node);
+    }
+
+    private RBTNode<T> min(RBTNode<T> node) {
+        if (node.getLeftNode() == null) {
+            return node;
+        }
+        return min(node.getLeftNode());
+    }
+
     /**
      * 沿着需要变化的节点记性逆时针旋转
      * @param node
@@ -125,6 +181,41 @@ public class RBTSimpleImplement<T extends Comparable> implements Serializable {
         node.setColor(!node.isColor());
         node.getLeftNode().setColor(!node.getLeftNode().isColor());
         node.getRightNode().setColor(!node.getRightNode().isColor());
+    }
+
+    private RBTNode<T> balance(RBTNode<T> node) {
+        if (node == null) {
+            return null;
+        }
+        if (isRed(node.getRightNode())) {
+            node = leftRotation(node);
+        }
+        if (isRed(node.getLeftNode()) && isRed(node.getLeftNode().getLeftNode())) {
+            node = rightRotation(node);
+        }
+        if (isRed(node.getLeftNode()) && isRed(node.getRightNode())) {
+            flipColors(node);
+        }
+        return node;
+    }
+
+    private RBTNode<T> moveRedLeft(RBTNode<T> node) {
+        flipColors(node);
+        if (isRed(node.getRightNode().getRightNode())) {
+            node.setRightNode(rightRotation(node));
+            node = leftRotation(node);
+            flipColors(node);
+        }
+        return node;
+    }
+
+    private RBTNode<T> moveRedRight(RBTNode<T> node) {
+        flipColors(node);
+        if (isRed(node.getLeftNode().getLeftNode())) {
+            node = rightRotation(node);
+            flipColors(node);
+        }
+        return node;
     }
 
     private boolean isRed(RBTNode<T> node) {
