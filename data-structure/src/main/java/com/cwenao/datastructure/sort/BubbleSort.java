@@ -25,14 +25,26 @@ public class BubbleSort {
 
     }
 
+    private static void bulleSortByAsc(int[] arrays) {
+        int len = arrays.length;
+        for (int i = 0; i < len; i++) {
+            for (int j = 0;j<len;j++) {
+                if ((j != len - 1) && arrays[j] < arrays[j + 1] ) {
+                    int tmp = arrays[j + 1];
+                    arrays[j + 1] = arrays[j];
+                    arrays[j] = tmp;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] arrays = {0, 100, 99, 105, 6, 1, 5, 4, 5, 22, 30, 45};
-        bubbleSortByDesc(arrays);
-
+        //bubbleSortByDesc(arrays);
+        bulleSortByAsc(arrays);
         for (int x : arrays) {
             System.out.println(x);
         }
-
     }
 
 }

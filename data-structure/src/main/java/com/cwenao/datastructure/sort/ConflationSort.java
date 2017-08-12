@@ -64,7 +64,7 @@ public class ConflationSort {
      * @param high
      * @return
      */
-    public static int[] ConflationSortASC(int[] integers, int low, int high) {
+    public static int[] conflationSortASC(int[] integers, int low, int high) {
 
         if (null == integers || integers.length < 1) {
             return null;
@@ -73,20 +73,62 @@ public class ConflationSort {
         int mid = (low + high) / 2;
 
         if (low < high) {
-            ConflationSortASC(integers, low, mid);
-            ConflationSortASC(integers, mid + 1, high);
+            conflationSortASC(integers, low, mid);
+            conflationSortASC(integers, mid + 1, high);
             merger(integers, low, mid, high);
         }
 
         return integers;
     }
 
+    private static void mergerByDesc(int[] integers, int low, int mid, int high) {
+        int[] tmp = new int[high - low + 1];
+        int i = low;
+        int j = mid + 1;
+        int x = 0;
+
+        while (i <= mid && j <= high) {
+            if (integers[i] > integers[j]) {
+                tmp[x++] = integers[i++];
+            } else {
+                tmp[x++] = integers[j++];
+            }
+        }
+
+        while (i < mid) {
+            tmp[x++] = integers[i++];
+        }
+
+        while (j < high) {
+            tmp[x++] = integers[j++];
+        }
+        for (int k=0;k<tmp.length;k++) {
+            integers[low + k] = tmp[k];
+        }
+    }
+
+    public static int[] conflationSortDESC(int[] integers, int low, int high) {
+
+        if (null == integers || integers.length < 1) {
+            return null;
+        }
+
+        int mid = (low + high) / 2;
+
+        if (low < high) {
+            conflationSortDESC(integers, low, mid);
+            conflationSortDESC(integers, mid + 1, high);
+            mergerByDesc(integers, low, mid, high);
+        }
+
+        return integers;
+    }
 
 
     public static void main(String[] args) {
         int[] sorti = new int[]{1, 35, 2, 44, 100, 55};
 
-        int[] x = ConflationSortASC(sorti, 0, sorti.length - 1);
+        int[] x = conflationSortDESC(sorti, 0, sorti.length - 1);
         System.out.println(Arrays.toString(x));
 
     }
