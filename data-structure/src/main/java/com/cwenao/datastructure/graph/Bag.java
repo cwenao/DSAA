@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
+ * Bag is
  * @author cwenao
  * @version $Id Bag.java, v 0.1 2017-08-12 14:33 cwenao Exp $$
  */
