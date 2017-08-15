@@ -4,6 +4,8 @@
  */
 package com.cwenao.datastructure.graph;
 
+import java.util.Stack;
+
 /**
  * 实现基于邻接表的深度优先搜索
  * @author cwenao
@@ -42,9 +44,37 @@ public class DepthFirstSearchByAdjacentList<T extends Comparable> {
         marked[v] = true;
         for (int w : graph.adj(v)) {
             if (!isMarked(w)) {
+                System.out.println("this is marked the point: "+ w);
                 dfs(graph, w);
             }
         }
+    }
+
+    /**
+     * 基于stack 实现迭代
+     * @param graph
+     * @param v
+     */
+    private void dfsWithStack(Graph<Integer> graph, int v) {
+        Stack stack = new Stack();
+        marked[v] = true;
+        stack.push(v);
+
+        while (v != -1) {
+            for (int w : graph.adj(v)) {
+                if (!isMarked(w)) {
+                    System.out.println("this is marked the point: "+ w);
+                    marked[w] = true;
+                    stack.push(w);
+                }
+            }
+            v = (int) stack.peek();
+            stack.pop();
+            if (stack.empty()) {
+                v = -1;
+            }
+        }
+
     }
 
     public boolean isMarked(int v) {
@@ -73,8 +103,8 @@ public class DepthFirstSearchByAdjacentList<T extends Comparable> {
 
         DepthFirstSearchByAdjacentList dfs = new DepthFirstSearchByAdjacentList(graph, 0);
 
-        dfs.dfs();
-
+//        dfs.dfs();
+        dfs.dfsWithStack(graph, 0);
         for(int v = 0;v<graph.getV();v++) {
             if (dfs.isMarked(v)) {
                 System.out.println("the vertex is : " +v);
