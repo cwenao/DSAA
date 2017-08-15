@@ -5,6 +5,7 @@
 package com.cwenao.datastructure.graph;
 
 /**
+ * 实现基于邻接表的深度优先搜索
  * @author cwenao
  * @version $Id DepthFirstSearchByAdjacentList.java, v 0.1 2017-08-13 08:43 cwenao Exp $$
  */
