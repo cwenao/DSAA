@@ -59,7 +59,7 @@ public class DepthFirstSearchByAdjacentList<T extends Comparable> {
         Stack stack = new Stack();
         marked[v] = true;
         stack.push(v);
-
+        System.out.println("this is  the root point: "+ v);
         while (v != -1) {
             for (int w : graph.adj(v)) {
                 if (!isMarked(w)) {
