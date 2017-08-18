@@ -14,9 +14,7 @@ public class LinkedListOperation<T extends Comparable> implements Serializable {
 
     private LinkedNode<T> head;
 
-
     public LinkedNode<T> append(T data) {
-
         if (head == null) {
             head = new LinkedNode<T>(data);
             head.setNext(null);
@@ -40,6 +38,59 @@ public class LinkedListOperation<T extends Comparable> implements Serializable {
         head = node;
     }
 
+    /**
+     * the size of linked list
+     * @return
+     */
+    public int size() {
+        return size(head);
+    }
+
+    private int size(LinkedNode<T> node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + size(node.getNext());
+    }
+
+    /**
+     * 判断是否存在当前给出的data的node
+     * @param data
+     * @return
+     */
+    public boolean contains(T data) {
+        return contains(head, data);
+    }
+
+    private boolean contains(LinkedNode<T> node, T data) {
+        if (node == null) {
+            return false;
+        }
+        if (node.getData().compareTo(data) == 0) {
+            return true;
+        }
+        return contains(node.getNext(), data);
+    }
+
+    /**
+     * 查找当前的Node并返回
+     * @param data
+     * @return
+     */
+    public LinkedNode<T> search(T data) {
+        return search(head, data);
+    }
+
+    private LinkedNode<T> search(LinkedNode<T> node, T data) {
+        if (node == null) {
+            return null;
+        }
+        if (node.getData().compareTo(data) == 0) {
+            return node;
+        }
+        return search(node.getNext(), data);
+    }
+
     public void insertAfter(LinkedNode<T> preNode, T data) {
         if (preNode == null) {
             return;
@@ -48,6 +99,8 @@ public class LinkedListOperation<T extends Comparable> implements Serializable {
         node.setNext(preNode.getNext());
         preNode.setNext(node);
     }
+
+
 
     public void deleteNode(T data) {
         LinkedNode<T> tmp, preNode = null;
