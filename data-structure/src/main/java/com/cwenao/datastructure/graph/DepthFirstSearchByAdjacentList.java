@@ -107,7 +107,7 @@ public class DepthFirstSearchByAdjacentList<T extends Comparable> {
         dfs.dfsWithStack(graph, 0);
         for(int v = 0;v<graph.getV();v++) {
             if (dfs.isMarked(v)) {
-                System.out.println("the vertex is : " +v);
+                System.out.println(" the vertex is : " +v);
             }
         }
 
