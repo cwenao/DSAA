@@ -24,20 +24,23 @@ import java.util.TreeMap;
 public class SymbolGraph<T extends Comparable> {
     private static final Logger LOG = LoggerFactory.getLogger(SymbolGraph.class);
 
+    //建立符号表：a:0,b:1,c:2
     private TreeMap<String, Integer> treeMap;
 
+    //反向索引表：a,b,c,d
     private String[] keys;
-
+    //邻接表
     private Graph<Integer> graph;
 
     private String[][] storeKeys;
 
     public SymbolGraph(String fileName, String sp) {
         treeMap = new TreeMap<>();
-
+        //读取文件
         File file = new File(fileName);
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
+            //Scanner 读取文件内容
             Scanner scanner = new Scanner(new BufferedInputStream(fileInputStream), "UTF-8");
             scanner.useLocale(Locale.CHINA);
             storeKeys = new String[100][];
