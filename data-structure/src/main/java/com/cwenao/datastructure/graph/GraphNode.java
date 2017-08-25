@@ -8,7 +8,7 @@ package com.cwenao.datastructure.graph;
  * @author cwenao
  * @version $Id GraphNode.java, v 0.1 2017-08-12 14:21 cwenao Exp $$
  */
-public class GraphNode<T extends Comparable> {
+public class GraphNode<T> {
 
     private T data;
     private GraphNode<T> next;

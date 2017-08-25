@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  * @author cwenao
  * @version $Id Bag.java, v 0.1 2017-08-12 14:33 cwenao Exp $$
  */
-public class Bag<T extends Comparable> implements Iterable<T> {
+public class Bag<T> implements Iterable<T> {
 
     private GraphNode<T> first;
     private int n;
@@ -41,7 +41,7 @@ public class Bag<T extends Comparable> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new ListIterator<>(first);
+        return new ListIterator(first);
     }
 
     private class ListIterator<T extends Comparable> implements Iterator<T> {
