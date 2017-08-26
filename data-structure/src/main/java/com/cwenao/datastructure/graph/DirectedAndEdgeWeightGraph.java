@@ -16,11 +16,35 @@ public class DirectedAndEdgeWeightGraph<T extends Comparable> {
 
     private static final Logger LOG = LoggerFactory.getLogger(DirectedAndEdgeWeightGraph.class);
 
-    private int V;
-    private int E;
-    private Bag<DirectedEdge> adj;
-    private int[] indegree;
+    private int V; //the number of vertexes
+    private int E; //the edge of with the vertexes
+    private Bag<DirectedEdge>[] adj; //the adj for grap
+    private int[] indegree; //this is the number for the edge
 
+    public DirectedAndEdgeWeightGraph(int V) {
+        this.V = V;
+        this.E = 0;
+        this.adj = new Bag[V];
+        this.indegree = new int[V];
+        for (int v=0;v<V;v++) {
+            adj[v] = new Bag<>();
+        }
+    }
+
+
+    public DirectedAndEdgeWeightGraph(int V, int E) {
+        this(V);
+
+    }
+
+    public void addEdge(DirectedEdge edge) {
+        int from = edge.getVertexFrom();
+        int to = edge.getVertexTo();
+
+        adj[from].add(edge);
+        indegree[to]++;
+        E++;
+    }
 
 
 
