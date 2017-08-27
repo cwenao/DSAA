@@ -7,6 +7,8 @@ package com.cwenao.datastructure.graph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Random;
+
 /**
  * 有向图且带权重
  * @author cwenao
@@ -34,6 +36,15 @@ public class DirectedAndEdgeWeightGraph<T extends Comparable> {
 
     public DirectedAndEdgeWeightGraph(int V, int E) {
         this(V);
+        Random random = new Random(3);
+        for(int i=0;i<E;i++) {
+
+            int from = random.nextInt(V);
+            int to = random.nextInt(V);
+            double weight = Math.random() * 10;
+            DirectedEdge directedEdge = new DirectedEdge(from, to, weight);
+            addEdge(directedEdge);
+        }
 
     }
 
@@ -46,6 +57,23 @@ public class DirectedAndEdgeWeightGraph<T extends Comparable> {
         E++;
     }
 
+    public Iterable<DirectedEdge> adj(int v) {
+        return adj[v];
+    }
 
+    public int outdegree(int v) {
+        return adj[v].size();
+    }
 
+    public int indegree(int v) {
+        return indegree[v];
+    }
+
+    public int getV() {
+        return V;
+    }
+
+    public int getE() {
+        return E;
+    }
 }
