@@ -4,6 +4,8 @@
  */
 package com.cwenao.datastructure.graph;
 
+import java.util.Map;
+
 /**
  * 单源最短路径：求边上的最小权
  * （1）设立U 和Y两个节点集合， Y用于保存所有未被访问的节点，U 记录所有已经访问过的节点。
@@ -18,7 +20,11 @@ public class DijkstraShortPath<T extends Comparable> {
 
     private int[] distTo;
 
+    private Map<String, Integer> vertexes;
+
     private DirectedEdge[] directedEdge;
+
+
 
 
 }
