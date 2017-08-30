@@ -4,11 +4,15 @@
  */
 package com.cwenao.datastructure.queue;
 
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
 /**
  * @author cwenao
  * @version $Id MaxPQ.java, v 0.1 2017-08-30 08:28 cwenao Exp $$
  */
-public class MaxPQ<T extends Comparable<T>> {
+public class MaxPQ<T extends Comparable<T>> implements Iterable {
 
     private T[] pq;
     private int len = 0;
@@ -18,7 +22,7 @@ public class MaxPQ<T extends Comparable<T>> {
     }
 
     public MaxPQ(int len) {
-        pq = (T[]) new Comparable[len + 1];
+        pq = (T[]) new Object[len + 1];
     }
 
     /**
@@ -114,5 +118,44 @@ public class MaxPQ<T extends Comparable<T>> {
 
         System.out.println(maxPQ.size());
 
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new HeapIterator();
+    }
+
+    private class HeapIterator implements Iterator<T>{
+        private MaxPQ<T> cloneMaxPQ;
+
+        public HeapIterator() {
+            cloneMaxPQ = new MaxPQ<>(size());
+            for (int i=1;i<=len;i++) {
+                cloneMaxPQ.insert(pq[i]);
+
+            }
+        }
+        @Override
+        public boolean hasNext() {
+            return !cloneMaxPQ.isEmpty();
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                return null;
+            }
+            return cloneMaxPQ.delMax();
+        }
+    }
+
+    @Override
+    public void forEach(Consumer action) {
+
+    }
+
+    @Override
+    public Spliterator spliterator() {
+        return null;
     }
 }
