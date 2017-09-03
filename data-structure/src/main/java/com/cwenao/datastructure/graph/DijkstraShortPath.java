@@ -4,7 +4,7 @@
  */
 package com.cwenao.datastructure.graph;
 
-import java.util.Map;
+import com.cwenao.datastructure.queue.IndexMinPQ;
 
 /**
  * 单源最短路径：求边上的最小权
@@ -17,14 +17,31 @@ import java.util.Map;
  *
  * @version $Id DijkstraShortPath.java, v 0.1 2017-08-22 23:24 cwenao Exp $$
  */
-public class DijkstraShortPath<T extends Comparable> {
+public class DijkstraShortPath{
 
-    private int[] distTo;
-
-    private Map<String, Integer> vertexes;
+    private Double[] distTo;
 
     private DirectedEdge[] directedEdge;
 
+    private IndexMinPQ<Double> indexMinPQ;
 
+    public DijkstraShortPath(DirectedAndEdgeWeightGraph G, int s) {
 
+        distTo = new Double[G.getV()];
+        directedEdge = new DirectedEdge[G.getV()];
+
+        for (int v =0;v<G.getV();v++) {
+            distTo[v] = Double.POSITIVE_INFINITY;
+        }
+
+        distTo[s] = 0.0;
+
+        indexMinPQ = new IndexMinPQ<>(G.getV());
+        indexMinPQ.insert(s, distTo[s]);
+
+        while (!indexMinPQ.isEmpty()) {
+
+        }
+
+    }
 }

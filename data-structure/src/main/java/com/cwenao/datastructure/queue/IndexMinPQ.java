@@ -90,6 +90,10 @@ public class IndexMinPQ<T extends Comparable> implements Iterable{
         }
     }
 
+    public boolean isEmpty() {
+        return len == 0;
+    }
+
     public int size() {
         return len;
     }
@@ -108,7 +112,25 @@ public class IndexMinPQ<T extends Comparable> implements Iterable{
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new HeapIterator();
     }
+
+    private class HeapIterator implements Iterator<T> {
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public T next() {
+            return null;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+    }
+
 
 }
