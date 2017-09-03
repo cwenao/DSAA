@@ -36,6 +36,38 @@ public class IndexMinPQ<T extends Comparable> implements Iterable{
         }
     }
 
+    public void insert(int i, T key) {
+
+        len++;
+        qp[i] = len;
+        pq[len] = i;
+        keys[i] = key;
+        swim(len);
+
+    }
+
+    public int delMin() {
+        int min = pq[1];
+        exch(1, len--);
+        sink(1);
+        qp[min] = -1;
+        keys[pq[min]] = null;
+        pq[len + 1] = -1;
+
+        return min;
+    }
+
+    public T keysOf(int i) {
+        return keys[i];
+    }
+
+    public void changeKey(int i, T key) {
+        keys[i] = key;
+        swim(qp[i]);
+        sink(qp[i]);
+
+    }
+
     private void swim(int k) {
         while (k > 1 && greater(k / 2, k)) {
             exch(k / 2, k);
@@ -44,6 +76,7 @@ public class IndexMinPQ<T extends Comparable> implements Iterable{
     }
 
     private void sink(int k) {
+
         while (2 * k <= len) {
             int j = 2 * k;
             if (j < len && greater(j, j + 1)) {
@@ -55,6 +88,10 @@ public class IndexMinPQ<T extends Comparable> implements Iterable{
             exch(k, j);
             k = j;
         }
+    }
+
+    public int size() {
+        return len;
     }
 
     private boolean greater(int source, int target) {
