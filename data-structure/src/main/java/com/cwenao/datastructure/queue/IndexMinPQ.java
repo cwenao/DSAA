@@ -115,15 +115,26 @@ public class IndexMinPQ<T extends Comparable> implements Iterable{
         return new HeapIterator();
     }
 
-    private class HeapIterator implements Iterator<T> {
-        @Override
-        public boolean hasNext() {
-            return false;
+    private class HeapIterator implements Iterator<Integer> {
+
+        private IndexMinPQ<T> cloneIndexMindPQ;
+
+        public HeapIterator() {
+            cloneIndexMindPQ = new IndexMinPQ<>(size());
+
+            for (int i = 1; i <= len; i++) {
+                cloneIndexMindPQ.insert(pq[i],keys[pq[i]]);
+            }
         }
 
         @Override
-        public T next() {
-            return null;
+        public boolean hasNext() {
+            return !cloneIndexMindPQ.isEmpty();
+        }
+
+        @Override
+        public Integer next() {
+            return cloneIndexMindPQ.delMin();
         }
 
         @Override
