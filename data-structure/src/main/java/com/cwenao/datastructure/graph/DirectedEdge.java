@@ -14,6 +14,7 @@ public class DirectedEdge {
     private final int vertexTo;
     private final double weight;
 
+
     public DirectedEdge(int vertexFrom, int vertexTo, double weight) {
 
         this.vertexFrom = vertexFrom;

@@ -68,6 +68,21 @@ public class IndexMinPQ<T extends Comparable> implements Iterable{
 
     }
 
+    public boolean contains(int i) {
+        return qp[i] != -1;
+    }
+
+    public void decreaseKey(int i, T key) {
+        keys[i] = key;
+        sink(i);
+    }
+
+    public void increaseKey(int i, T key) {
+        keys[i] = key;
+        swim(i);
+
+    }
+
     private void swim(int k) {
         while (k > 1 && greater(k / 2, k)) {
             exch(k / 2, k);

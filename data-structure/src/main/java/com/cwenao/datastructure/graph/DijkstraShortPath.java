@@ -40,8 +40,26 @@ public class DijkstraShortPath{
         indexMinPQ.insert(s, distTo[s]);
 
         while (!indexMinPQ.isEmpty()) {
+            int v = indexMinPQ.delMin();
+            for (DirectedEdge e : G.adj(v)) {
 
+            }
         }
-
     }
+
+    private void relaxation(DirectedEdge edge) {
+        int source = edge.getVertexFrom();
+        int target = edge.getVertexTo();
+
+        if (distTo[target] > distTo[source] + edge.getWeight()) {
+            distTo[target] = distTo[source] + edge.getWeight();
+            directedEdge[target] = edge;
+            if (indexMinPQ.contains(target)) {
+                indexMinPQ.decreaseKey(target, distTo[target]);
+            } else {
+                indexMinPQ.insert(target,distTo[target]);
+            }
+        }
+    }
+
 }
