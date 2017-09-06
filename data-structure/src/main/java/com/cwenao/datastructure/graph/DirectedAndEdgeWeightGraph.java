@@ -14,7 +14,7 @@ import java.util.Random;
  * @author cwenao
  * @version $Id DirectedAndEdgeWeightGraph.java, v 0.1 2017-08-25 08:50 cwenao Exp $$
  */
-public class DirectedAndEdgeWeightGraph<T extends Comparable> {
+public class DirectedAndEdgeWeightGraph {
 
     private static final Logger LOG = LoggerFactory.getLogger(DirectedAndEdgeWeightGraph.class);
 

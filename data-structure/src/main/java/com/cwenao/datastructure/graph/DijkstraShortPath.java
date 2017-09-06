@@ -42,7 +42,7 @@ public class DijkstraShortPath{
         while (!indexMinPQ.isEmpty()) {
             int v = indexMinPQ.delMin();
             for (DirectedEdge e : G.adj(v)) {
-
+                relaxation(e);
             }
         }
     }
