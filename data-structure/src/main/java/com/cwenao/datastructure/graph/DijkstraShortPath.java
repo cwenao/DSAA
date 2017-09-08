@@ -6,6 +6,8 @@ package com.cwenao.datastructure.graph;
 
 import com.cwenao.datastructure.queue.IndexMinPQ;
 
+import java.util.Stack;
+
 /**
  * 单源最短路径：求边上的最小权
  * （1）设立U 和Y两个节点集合， Y用于保存所有未被访问的节点，U 记录所有已经访问过的节点。
@@ -67,4 +69,22 @@ public class DijkstraShortPath{
         }
     }
 
+    public double distTo(int v) {
+        return distTo[v];
+    }
+
+    public boolean hasPathTo(int v) {
+        return distTo[v] < Double.POSITIVE_INFINITY;
+    }
+
+    public Iterable<DirectedEdge> pathTo(int v) {
+        if (!hasPathTo(v)) {
+            return null;
+        }
+        Stack<DirectedEdge> path = new Stack<>();
+        for (DirectedEdge edge = directedEdge[v]; edge != null; edge = directedEdge[edge.getVertexFrom()]) {
+            path.push(edge);
+        }
+        return path;
+    }
 }
