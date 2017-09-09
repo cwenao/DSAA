@@ -57,9 +57,10 @@ public class DijkstraShortPath{
     private void relaxation(DirectedEdge edge) {
         int source = edge.getVertexFrom();
         int target = edge.getVertexTo();
-
+        //判断 最短路径
         if (distTo[target] > distTo[source] + edge.getWeight()) {
             distTo[target] = distTo[source] + edge.getWeight();
+            //重新定位中心点
             directedEdge[target] = edge;
             if (indexMinPQ.contains(target)) {
                 indexMinPQ.decreaseKey(target, distTo[target]);
