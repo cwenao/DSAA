@@ -15,4 +15,5 @@ package com.cwenao.datastructure.graph;
  */
 public class PrimMST {
 
+
 }
