@@ -17,6 +17,7 @@ import com.cwenao.datastructure.queue.IndexMinPQ;
  *
  * @version $Id DijkstraShortPath.java, v 0.1 2017-08-22 23:24 cwenao Exp $$
  */
+
 public class DijkstraShortPath{
 
     private Double[] distTo;

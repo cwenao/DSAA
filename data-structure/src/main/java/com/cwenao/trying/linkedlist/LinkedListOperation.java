@@ -5,6 +5,7 @@
 package com.cwenao.trying.linkedlist;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  * @author cwenao

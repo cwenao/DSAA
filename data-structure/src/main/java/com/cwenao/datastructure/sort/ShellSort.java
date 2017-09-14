@@ -26,6 +26,7 @@ public class ShellSort {
         while (h < len / 3) {
             h = 3 * h + 1;
         }
+        System.out.println(h);
         while (h >= 1) {
             for(int i =h;i<len;i++) {
                 for (int j = i; j >= h && shellArray[j] > shellArray[j - h]; j -= h) {
@@ -45,7 +46,7 @@ public class ShellSort {
         shell(shellArray);
         int n = shellArray.length * 5;
         for (int x =0; x< shellArray.length; x++) {
-           System.out.println(x);
+           System.out.println(shellArray[x]);
         }
     }
 
