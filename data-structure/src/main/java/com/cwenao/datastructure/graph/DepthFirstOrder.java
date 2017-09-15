@@ -4,6 +4,7 @@
  */
 package com.cwenao.datastructure.graph;
 
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
@@ -21,4 +22,46 @@ public class DepthFirstOrder {
     private int preCounter;
     private int postCounter;
 
+    public DepthFirstOrder(DirectedGraph graph) {
+        pre = new int[graph.getV()];
+        post = new int[graph.getV()];
+        preOrder = new ArrayDeque<>();
+        postOrder = new ArrayDeque<>();
+        marked = new boolean[graph.getE()];
+
+        for (int v = 0; v < graph.getV(); v++) {
+            if (!marked[v]) {
+                dfs(graph,v);
+            }
+        }
+
+    }
+
+    private void dfs(DirectedGraph graph, int v) {
+        marked[v] = true;
+        pre[v] = preCounter++;
+        preOrder.offer(v);
+
+        for (int w : graph.ajd(v)) {
+            if (!marked[w]) {
+                dfs(graph, w);
+            }
+        }
+    }
+
+    public int pre(int v) {
+        return pre[v];
+    }
+
+    public int post(int v) {
+        return post[v];
+    }
+
+    public Iterable<Integer> pre() {
+        return preOrder;
+    }
+
+    public Iterable<Integer> post() {
+        return postOrder;
+    }
 }
