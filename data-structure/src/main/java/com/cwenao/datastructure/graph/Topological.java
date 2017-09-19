@@ -19,7 +19,20 @@ public class Topological {
     private int[] rank;
 
     public Topological(DirectedGraph graph) {
+        DirectedCycle directedCycle = new DirectedCycle(graph);
 
+        if (!directedCycle.hasCycle()) {
+            DepthFirstOrder depthFirstOrder = new DepthFirstOrder(graph);
+            order = depthFirstOrder.reversePost();
+            rank = new int[graph.getV()];
+            int i = 0;
+            for (int v : order) {
+                rank[v] = i++;
+            }
+        }
     }
 
+    public Iterable<Integer> order() {
+        return order;
+    }
 }

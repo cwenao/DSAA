@@ -6,6 +6,7 @@ package com.cwenao.datastructure.graph;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * @author cwenao
@@ -37,6 +38,14 @@ public class DepthFirstOrder {
 
     }
 
+    public Iterable<Integer> reversePost() {
+        Stack<Integer> reverse = new Stack<>();
+        for (int v : postOrder) {
+            reverse.push(v);
+        }
+        return reverse;
+    }
+
     private void dfs(DirectedGraph graph, int v) {
         marked[v] = true;
         pre[v] = preCounter++;
@@ -47,6 +56,8 @@ public class DepthFirstOrder {
                 dfs(graph, w);
             }
         }
+        postOrder.offer(v);
+        post[v] = postCounter++;
     }
 
     public int pre(int v) {
