@@ -15,11 +15,11 @@ public class CelebrityProblemByStack {
 
     private static final int[][] MARKED = {{0, 0, 1, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}, {0, 0, 1, 0}};
 
-    private boolean isKnown(int a, int b) {
+    private static boolean isKnown(int a, int b) {
         return MARKED[a][b] == 1;
     }
 
-    public int findCelebrity(int n) {
+    public static int findCelebrity(int n) {
         Stack<Integer> stack = new Stack<>();
         int c;
 
@@ -39,9 +39,15 @@ public class CelebrityProblemByStack {
         c = stack.pop();
 
         for (int i = 0; i < n; i++) {
-
+            if (i != c && (isKnown(c, i) || !isKnown(i, c))) {
+                return -1;
+            }
         }
-
+        return c;
     }
 
+    public static void main(String[] args) {
+        int n = 4;
+        System.out.println("The celebrity index is : " + findCelebrity(n));
+    }
 }
