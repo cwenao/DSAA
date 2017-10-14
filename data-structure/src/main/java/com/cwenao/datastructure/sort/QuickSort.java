@@ -9,7 +9,7 @@ package com.cwenao.datastructure.sort;
  * 选择一个元素对数组进行切分
  * 切分后进行比较交换
  * @author cwenao
- * @version $Id QuickSort.java, v 0.1 2017-05-14 9:31 cwenao Exp $$
+ * @version $Id QuickSortTrying.java, v 0.1 2017-05-14 9:31 cwenao Exp $$
  */
 public class QuickSort {
 
@@ -35,7 +35,7 @@ public class QuickSort {
             }
 
             while (par > partitionArray[--j]) {
-                if (i == low) {
+                if (j == low) {
                     break;
                 }
             }
