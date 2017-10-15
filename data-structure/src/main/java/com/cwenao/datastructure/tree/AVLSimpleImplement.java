@@ -11,8 +11,6 @@ package com.cwenao.datastructure.tree;
  */
 public class AVLSimpleImplement<T extends Comparable> {
 
-
-
     protected AVLNode<T> root;
 
     public AVLSimpleImplement() {
