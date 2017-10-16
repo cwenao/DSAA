@@ -16,6 +16,38 @@ public class AVLTreeTrying<T extends Comparable> {
         root = null;
     }
 
+    public void insert(T data) {
+        root = insert(root, data);
+    }
+
+    public AVLNodeTrying<T> insert(AVLNodeTrying<T> nodeTrying, T data) {
+        if (nodeTrying == null) {
+            nodeTrying = new AVLNodeTrying<T>(data);
+        }
+        int left = data.compareTo(nodeTrying.getData());
+
+        if (left < 0) {
+            nodeTrying.setLeftNode(insert(nodeTrying.getLeftNode(), data));
+            if (high(nodeTrying.getLeftNode()) - high(nodeTrying.getRightNode())>=2) {
+                if (data.compareTo(nodeTrying.getLeftNode().getData()) < 0) {
+                    nodeTrying = LLRotation(nodeTrying);
+                } else {
+                    nodeTrying = LRRoation(nodeTrying);
+                }
+            }
+        } else if (left > 0) {
+            nodeTrying.setRightNode(insert(nodeTrying.getRightNode(), data));
+            if (high(nodeTrying.getLeftNode()) - high(nodeTrying.getRightNode()) >=2) {
+                if (data.compareTo(nodeTrying.getRightNode().getData()) >= 0) {
+                    nodeTrying = RRRotation(nodeTrying);
+                } else {
+                    nodeTrying = RLRoation(nodeTrying);
+                }
+            }
+        }
+        nodeTrying.setHigh(max(nodeTrying.getLeftNode(), nodeTrying.getRightNode()));
+        return nodeTrying;
+    }
     /**
      * 插入后如果是 left and left情况则：围绕失衡点右转
      * @param avlNodeTrying

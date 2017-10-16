@@ -12,27 +12,27 @@ import java.io.Serializable;
  */
 public class AVLNodeTrying<T extends Comparable> implements Serializable {
 
-    private int data;
+    private T data;
     private int high;
     private AVLNodeTrying<T> leftNode;
     private AVLNodeTrying<T> rightNode;
 
-    public AVLNodeTrying(int data) {
+    public AVLNodeTrying(T data) {
         this(data, 0, null, null);
     }
 
-    public AVLNodeTrying(int data, int high, AVLNodeTrying<T> leftNode, AVLNodeTrying<T> rightNode) {
+    public AVLNodeTrying(T data, int high, AVLNodeTrying<T> leftNode, AVLNodeTrying<T> rightNode) {
         this.data = data;
         this.high = high;
         this.leftNode = leftNode;
         this.rightNode = rightNode;
     }
 
-    public int getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(T data) {
         this.data = data;
     }
 
