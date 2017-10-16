@@ -17,7 +17,7 @@ public class AVLSimpleImplement<T extends Comparable> {
         root = null;
     }
 
-    public void inster(T data) {
+    public void insert(T data) {
         root = insert(root, data);
     }
 
