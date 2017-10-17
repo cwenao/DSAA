@@ -49,7 +49,11 @@ public class AVLTreeTrying<T extends Comparable> {
         return nodeTrying;
     }
     /**
-     * 插入后如果是 left and left情况则：围绕失衡点右转
+     * 插入后如果是 left and left情况则：围绕失衡点(M)右转
+     * 1. 获取失衡点M的左子树为A
+     * 2. 设置失衡点左子树为A.getRightNode()
+     * 3. 设置A.setLeftNode(M)
+     *
      * @param avlNodeTrying
      * @return
      */
@@ -65,14 +69,18 @@ public class AVLTreeTrying<T extends Comparable> {
     }
 
     /**
-     * 插入后 变成 right and right 情况则：围绕失衡点左转
+     * 插入后 变成 right and right 情况则：围绕失衡点M左转
+     * 1. 获取失衡点M的右子树A
+     * 2. 设置设置失衡点M右子树为A的左子树：M.setRightNode(A.getLeftNode())
+     * 3. 设置A的左子树为M： A.setLeftNode(M)
+     *
      * @param avlNodeTrying
      * @return
      */
     public AVLNodeTrying<T> RRRotation(AVLNodeTrying<T> avlNodeTrying) {
 
         AVLNodeTrying<T> noBalance = avlNodeTrying.getRightNode();
-        avlNodeTrying.setLeftNode(noBalance.getLeftNode());
+        avlNodeTrying.setRightNode(noBalance.getLeftNode());
         noBalance.setLeftNode(avlNodeTrying);
 
         avlNodeTrying.setHigh(max(avlNodeTrying.getLeftNode(),avlNodeTrying.getRightNode())+1);
@@ -109,5 +117,7 @@ public class AVLTreeTrying<T extends Comparable> {
         return nodeTrying.getHigh();
     }
 
+    public static void main(String[] args) {
 
+    }
 }
