@@ -47,8 +47,9 @@ public class QueueWithFixedSizeArray<E> {
         for(int i = 0; i<currentIndex; i++) {
             queue[i] = queue[i + 1];
         }
-        if (currentIndex < maxSize -1)
+        if (currentIndex < maxSize -1) {
             queue[currentIndex] = queue[currentIndex + 1];
+        }
 
         currentIndex--;
 

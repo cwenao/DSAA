@@ -32,7 +32,7 @@ public class SpecialStack extends Stack<Integer> {
             }
         }
     }
-
+    @Override
     public Integer pop() {
         int x = super.pop();
         int y = min.pop();

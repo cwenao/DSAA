@@ -16,15 +16,15 @@ public class QueueByStack {
         Stack<Integer> stack;
     }
 
-    static void push(Stack<Integer> top_ref, int data) {
-        top_ref.push(data);
+    static void push(Stack<Integer> topRef, int data) {
+        topRef.push(data);
     }
 
-    static int pop(Stack<Integer> top_ref) {
-        if (top_ref==null) {
+    static int pop(Stack<Integer> topRef) {
+        if (topRef==null) {
             throw new IllegalArgumentException("the stack is must not null");
         }
-        return top_ref.pop();
+        return topRef.pop();
     }
 
     /**

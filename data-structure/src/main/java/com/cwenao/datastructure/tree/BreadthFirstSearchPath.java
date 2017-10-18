@@ -16,7 +16,7 @@ import java.util.Queue;
  */
 public class BreadthFirstSearchPath {
 
-    private static final int maxVertexes = 9;
+    private static final int MAX_VERTEXES = 9;
     private static Vertexes[] vertexes;
     private static int[][] adjacent;
 
@@ -28,7 +28,7 @@ public class BreadthFirstSearchPath {
             int x = (int) queue.poll();
             vertexes[x].setVisited(true);
 
-            for(int i =0;i<maxVertexes;i++) {
+            for(int i =0;i<MAX_VERTEXES;i++) {
                 if (adjacent[x][i] == 1 && vertexes[i].getVisited() == false) {
                     printVertexe(i);
                     vertexes[i].setVisited(true);
@@ -54,7 +54,7 @@ public class BreadthFirstSearchPath {
     }
 
     public static void main(String[] args) {
-        DrawGraphForSearch drawGraphForSearch = new DrawGraphForSearch(maxVertexes);
+        DrawGraphForSearch drawGraphForSearch = new DrawGraphForSearch(MAX_VERTEXES);
 
         char[] ver = {'A','B','C','D','E','F','G','H','I'};
 

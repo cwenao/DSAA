@@ -35,10 +35,10 @@ public class AVLSimpleImplement<T extends Comparable> {
             if (height(node.getLeftNode()) - height(node.getRightNode()) >= 2) {
                 //插入为左节点时成为左左情况
                 if (data.compareTo(node.getLeftNode().getData()) < 0) {
-                    node = LLRotation(node);
+                    node = lLRotation(node);
                 } else {
                     //插入为右节点时为左右情况
-                    node = LRRotation(node);
+                    node = lRRotation(node);
                 }
             }
         } else if (left > 0) {
@@ -46,10 +46,10 @@ public class AVLSimpleImplement<T extends Comparable> {
             if (height(node.getRightNode()) - height(node.getLeftNode()) >= 2) {
                 if (data.compareTo(node.getRightNode().getData()) < 0) {
                     //为右左的情况
-                    node = RLRotation(node);
+                    node = rLRotation(node);
                 } else {
                     //为右右情况
-                    node = RRRotation(node);
+                    node = rRRotation(node);
                 }
             }
         }
@@ -77,7 +77,7 @@ public class AVLSimpleImplement<T extends Comparable> {
      * @param avlNode
      * @return
      */
-    private AVLNode<T> LLRotation(AVLNode<T> avlNode) {
+    private AVLNode<T> lLRotation(AVLNode<T> avlNode) {
 
         AVLNode<T> noBlance = avlNode.getLeftNode();
 
@@ -95,7 +95,7 @@ public class AVLSimpleImplement<T extends Comparable> {
      * @param avlNode
      * @return
      */
-    private AVLNode<T> RRRotation(AVLNode<T> avlNode)
+    private AVLNode<T> rRRotation(AVLNode<T> avlNode)
     {
         AVLNode<T> noBlance = avlNode.getRightNode();
 
@@ -113,11 +113,11 @@ public class AVLSimpleImplement<T extends Comparable> {
      * @param avlNode
      * @return
      */
-    private AVLNode<T> LRRotation(AVLNode<T> avlNode)
+    private AVLNode<T> lRRotation(AVLNode<T> avlNode)
     {
-        AVLNode<T> noBlance = RRRotation(avlNode);
+        AVLNode<T> noBlance = rRRotation(avlNode);
 
-        return LLRotation(noBlance);
+        return lLRotation(noBlance);
     }
 
     /**
@@ -125,10 +125,10 @@ public class AVLSimpleImplement<T extends Comparable> {
      * @param avlNode
      * @return
      */
-    private AVLNode<T> RLRotation(AVLNode<T> avlNode)
+    private AVLNode<T> rLRotation(AVLNode<T> avlNode)
     {
-        AVLNode<T> noBlance = LLRotation(avlNode);
-        return RRRotation(noBlance);
+        AVLNode<T> noBlance = lLRotation(avlNode);
+        return rRRotation(noBlance);
     }
 
 }

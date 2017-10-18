@@ -17,13 +17,13 @@ public class DepthFirstSearchOne {
     private static Vertexes[] vertexes;
     private static int[][] adjacent;
 
-    private static final int maxVertexes = 9;
+    private static final int MAX_VERTEXES = 9;
 
     /**
      * 遍历入口
      */
-    public static void DFSOneTraverse() {
-        for(int i =0; i<maxVertexes;i++) {
+    public static void dfsOneTraverse() {
+        for(int i =0; i<MAX_VERTEXES;i++) {
             if (vertexes[i].getVisited() == false) {
                 traverse(i);
             }
@@ -37,7 +37,7 @@ public class DepthFirstSearchOne {
     private static void traverse(int i) {
         vertexes[i].setVisited(true);
 
-        for(int j =0;j<maxVertexes;j++) {
+        for(int j =0;j<MAX_VERTEXES;j++) {
             if (adjacent[i][j] == 1 && vertexes[j].getVisited() == false) {
                 printVertexe(j);
                 traverse(j);
@@ -60,7 +60,7 @@ public class DepthFirstSearchOne {
     }
 
     public static void main(String[] args) {
-        DrawGraphForSearch drawGraphForSearch = new DrawGraphForSearch(maxVertexes);
+        DrawGraphForSearch drawGraphForSearch = new DrawGraphForSearch(MAX_VERTEXES);
 
         char[] ver = {'A','B','C','D','E','F','G','H','I'};
 
@@ -82,7 +82,7 @@ public class DepthFirstSearchOne {
 
         printAdjacent(adjacent);
         printVertexe(0);
-        DFSOneTraverse();
+        dfsOneTraverse();
     }
 }
 

@@ -125,11 +125,13 @@ public class RBTSimpleImplement<T extends Comparable> implements Serializable {
     }
 
     private RBTNode<T>  deleteMin(RBTNode<T>  node) {
-        if (node.getLeftNode() == null)
+        if (node.getLeftNode() == null) {
             return null;
+        }
 
-        if (!isRed(node.getLeftNode()) && !isRed(node.getLeftNode().getLeftNode()))
+        if (!isRed(node.getLeftNode()) && !isRed(node.getLeftNode().getLeftNode())) {
             node = moveRedLeft(node);
+        }
 
         node.setLeftNode(deleteMin(node.getLeftNode()));
         return balance(node);

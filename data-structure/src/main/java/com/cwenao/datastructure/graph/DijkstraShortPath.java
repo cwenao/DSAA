@@ -28,23 +28,23 @@ public class DijkstraShortPath{
 
     private IndexMinPQ<Double> indexMinPQ;
 
-    public DijkstraShortPath(DirectedAndEdgeWeightGraph G, int s) {
+    public DijkstraShortPath(DirectedAndEdgeWeightGraph graph, int s) {
 
-        distTo = new Double[G.getV()];
-        directedEdge = new DirectedEdge[G.getV()];
+        distTo = new Double[graph.getV()];
+        directedEdge = new DirectedEdge[graph.getV()];
 
-        for (int v =0;v<G.getV();v++) {
+        for (int v =0;v<graph.getV();v++) {
             distTo[v] = Double.POSITIVE_INFINITY;
         }
 
         distTo[s] = 0.0;
 
-        indexMinPQ = new IndexMinPQ<>(G.getV());
+        indexMinPQ = new IndexMinPQ<>(graph.getV());
         indexMinPQ.insert(s, distTo[s]);
 
         while (!indexMinPQ.isEmpty()) {
             int v = indexMinPQ.delMin();
-            for (DirectedEdge e : G.adj(v)) {
+            for (DirectedEdge e : graph.adj(v)) {
                 relaxation(e);
             }
         }

@@ -30,18 +30,18 @@ public class AVLTreeTrying<T extends Comparable> {
             nodeTrying.setLeftNode(insert(nodeTrying.getLeftNode(), data));
             if (high(nodeTrying.getLeftNode()) - high(nodeTrying.getRightNode())>=2) {
                 if (data.compareTo(nodeTrying.getLeftNode().getData()) < 0) {
-                    nodeTrying = LLRotation(nodeTrying);
+                    nodeTrying = lLRotation(nodeTrying);
                 } else {
-                    nodeTrying = LRRoation(nodeTrying);
+                    nodeTrying = lRRoation(nodeTrying);
                 }
             }
         } else if (left > 0) {
             nodeTrying.setRightNode(insert(nodeTrying.getRightNode(), data));
             if (high(nodeTrying.getLeftNode()) - high(nodeTrying.getRightNode()) >=2) {
                 if (data.compareTo(nodeTrying.getRightNode().getData()) >= 0) {
-                    nodeTrying = RRRotation(nodeTrying);
+                    nodeTrying = rRRotation(nodeTrying);
                 } else {
-                    nodeTrying = RLRoation(nodeTrying);
+                    nodeTrying = rLRoation(nodeTrying);
                 }
             }
         }
@@ -57,7 +57,7 @@ public class AVLTreeTrying<T extends Comparable> {
      * @param avlNodeTrying
      * @return
      */
-    public AVLNodeTrying<T> LLRotation(AVLNodeTrying<T> avlNodeTrying) {
+    public AVLNodeTrying<T> lLRotation(AVLNodeTrying<T> avlNodeTrying) {
         AVLNodeTrying<T> noBalance = avlNodeTrying.getLeftNode();
         avlNodeTrying.setLeftNode(noBalance.getRightNode());
         noBalance.setRightNode(avlNodeTrying);
@@ -77,7 +77,7 @@ public class AVLTreeTrying<T extends Comparable> {
      * @param avlNodeTrying
      * @return
      */
-    public AVLNodeTrying<T> RRRotation(AVLNodeTrying<T> avlNodeTrying) {
+    public AVLNodeTrying<T> rRRotation(AVLNodeTrying<T> avlNodeTrying) {
 
         AVLNodeTrying<T> noBalance = avlNodeTrying.getRightNode();
         avlNodeTrying.setRightNode(noBalance.getLeftNode());
@@ -94,9 +94,9 @@ public class AVLTreeTrying<T extends Comparable> {
      * @param avlNodeTrying
      * @return
      */
-    public AVLNodeTrying<T> LRRoation(AVLNodeTrying<T> avlNodeTrying) {
-        AVLNodeTrying<T> noBalance = RRRotation(avlNodeTrying);
-        return LLRotation(noBalance);
+    public AVLNodeTrying<T> lRRoation(AVLNodeTrying<T> avlNodeTrying) {
+        AVLNodeTrying<T> noBalance = rRRotation(avlNodeTrying);
+        return lLRotation(noBalance);
     }
 
     /**
@@ -104,9 +104,9 @@ public class AVLTreeTrying<T extends Comparable> {
      * @param avlNodeTrying
      * @return
      */
-    public AVLNodeTrying<T> RLRoation(AVLNodeTrying<T> avlNodeTrying) {
-        AVLNodeTrying<T> noBalance = LLRotation(avlNodeTrying);
-        return RRRotation(noBalance);
+    public AVLNodeTrying<T> rLRoation(AVLNodeTrying<T> avlNodeTrying) {
+        AVLNodeTrying<T> noBalance = lLRotation(avlNodeTrying);
+        return rRRotation(noBalance);
     }
 
     private int max(AVLNodeTrying<T> leftNode, AVLNodeTrying<T> rightNode) {

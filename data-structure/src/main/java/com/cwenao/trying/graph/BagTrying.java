@@ -41,6 +41,7 @@ public class BagTrying<T> implements Iterable<T> {
             current = first;
         }
 
+        @Override
         public T next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
@@ -49,7 +50,7 @@ public class BagTrying<T> implements Iterable<T> {
             current = current.getNext();
             return t;
         }
-
+        @Override
         public boolean hasNext() {
             return current != null;
         }

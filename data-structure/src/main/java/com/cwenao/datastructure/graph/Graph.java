@@ -23,8 +23,9 @@ public class Graph<T extends Comparable> {
     private Bag<Integer>[] adj; // the array of adjacency list
 
     public Graph(int V) {
-        if (0 > V)
+        if (0 > V) {
             throw new IllegalArgumentException();
+        }
         this.V = V;
         this.E = 0;
         adj = new Bag[V];
