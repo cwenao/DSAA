@@ -11,24 +11,24 @@ import java.io.Serializable;
  * @version $Id BinaryNodeTrying.java, v 0.1 2017-10-16 16:45 cwenao Exp $$
  */
 public class BinaryNodeTrying<T extends Comparable> implements Serializable {
-    private int data;
+    private T data;
     private BinaryNodeTrying<T> leftNode;
     private BinaryNodeTrying<T> rightNode;
 
-    public BinaryNodeTrying(int data) {
+    public BinaryNodeTrying(T data) {
         this(data, null, null);
     }
-    public BinaryNodeTrying(int data, BinaryNodeTrying leftNode, BinaryNodeTrying rightNode) {
+    public BinaryNodeTrying(T data, BinaryNodeTrying leftNode, BinaryNodeTrying rightNode) {
         this.data = data;
         this.leftNode = leftNode;
         this.rightNode = rightNode;
     }
 
-    public int getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(T data) {
         this.data = data;
     }
 

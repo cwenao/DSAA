@@ -26,6 +26,22 @@ package com.cwenao.trying.tree;
  */
 public class BinarySearchTreeTrying<T extends Comparable> {
 
+    private BinaryNodeTrying<T> root;
+
+    public BinarySearchTreeTrying() {
+        root = null;
+    }
+
+    public BinaryNodeTrying<T> insert(T data, BinaryNodeTrying<T> node) {
+        if (node == null) {
+            node = new BinaryNodeTrying<T>(data);
+        }
+
+        int left = data.compareTo(node.getData());
+
+        return node;
+
+    }
 
 
 }
