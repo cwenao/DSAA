@@ -39,7 +39,40 @@ public class BinarySearchTreeTrying<T extends Comparable> {
 
         int left = data.compareTo(node.getData());
 
+        if (left < 0) {
+            node = insert(data, node.getLeftNode());
+        } else if (left > 0) {
+            node = insert(data, node.getRightNode());
+        }
+
         return node;
+    }
+
+    public BinaryNodeTrying<T> remove(T data, BinaryNodeTrying nodeTrying) {
+        if (nodeTrying == null) {
+            return null;
+        }
+
+        int left = data.compareTo(nodeTrying.getData());
+
+
+        return nodeTrying;
+    }
+
+    /**
+     * 查询右子树序列中不存在左子树的节点
+     * @param nodeTrying
+     * @return
+     */
+    public BinaryNodeTrying<T> findExcludeLeftNode(BinaryNodeTrying nodeTrying) {
+        if (nodeTrying == null) {
+            return null;
+        }
+        if (nodeTrying.getLeftNode() == null) {
+            return nodeTrying;
+        }
+
+        return findExcludeLeftNode(nodeTrying.getRightNode());
 
     }
 
