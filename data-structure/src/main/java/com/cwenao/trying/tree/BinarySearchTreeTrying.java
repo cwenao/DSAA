@@ -24,6 +24,7 @@ package com.cwenao.trying.tree;
  * @author cwenao
  * @version $Id BinarySearchTreeTrying.java, v 0.1 2017-10-20 08:44 cwenao Exp $$
  */
+
 public class BinarySearchTreeTrying<T extends Comparable> {
 
     private BinaryNodeTrying<T> root;
@@ -32,6 +33,12 @@ public class BinarySearchTreeTrying<T extends Comparable> {
         root = null;
     }
 
+    /**
+     * 插入
+     * @param data
+     * @param node
+     * @return
+     */
     public BinaryNodeTrying<T> insert(T data, BinaryNodeTrying<T> node) {
         if (node == null) {
             node = new BinaryNodeTrying<T>(data);
@@ -48,13 +55,34 @@ public class BinarySearchTreeTrying<T extends Comparable> {
         return node;
     }
 
-    public BinaryNodeTrying<T> remove(T data, BinaryNodeTrying nodeTrying) {
+    /**
+     * 需要判断删除的节点是否存在左右子树都不为空的时候，
+     * 如果存在则需要在右子树序列中找到无左子树的节点
+     * 然后依次替换
+     * @param data
+     * @param nodeTrying
+     * @return
+     */
+    public BinaryNodeTrying<T> remove(T data, BinaryNodeTrying<T> nodeTrying) {
         if (nodeTrying == null) {
             return null;
         }
 
         int left = data.compareTo(nodeTrying.getData());
 
+        if (left < 0) {
+            nodeTrying.setLeftNode(remove(data, nodeTrying.getLeftNode()));
+        } else if (left > 0) {
+            nodeTrying.setRightNode(remove(data, nodeTrying.getRightNode()));
+        } else if (nodeTrying.getLeftNode() != null && nodeTrying.getRightNode() != null) {
+            //找到右子树序列中无左子树的节点
+            //并将data替换为找到的值
+            nodeTrying.setData(findExcludeLeftNode(nodeTrying.getRightNode()).getData());
+            //替换右子树，依次保存有序与结构性
+            nodeTrying.setRightNode(remove(nodeTrying.getData(), nodeTrying.getRightNode()));
+        } else {
+            nodeTrying = nodeTrying.getLeftNode() != null ? nodeTrying.getLeftNode() : nodeTrying.getRightNode();
+        }
 
         return nodeTrying;
     }
@@ -64,7 +92,7 @@ public class BinarySearchTreeTrying<T extends Comparable> {
      * @param nodeTrying
      * @return
      */
-    public BinaryNodeTrying<T> findExcludeLeftNode(BinaryNodeTrying nodeTrying) {
+    public BinaryNodeTrying<T> findExcludeLeftNode(BinaryNodeTrying<T> nodeTrying) {
         if (nodeTrying == null) {
             return null;
         }
@@ -73,7 +101,21 @@ public class BinarySearchTreeTrying<T extends Comparable> {
         }
 
         return findExcludeLeftNode(nodeTrying.getRightNode());
+    }
 
+    /**
+     * 查询左子树序列中不存在右子树的节点
+     * @param nodeTrying
+     * @return
+     */
+    public BinaryNodeTrying<T> findExcludeRightNode(BinaryNodeTrying<T> nodeTrying) {
+        if (nodeTrying == null) {
+            return null;
+        }
+        if (nodeTrying.getRightNode() == null) {
+            return nodeTrying;
+        }
+        return findExcludeRightNode(nodeTrying.getLeftNode());
     }
 
 
