@@ -88,6 +88,60 @@ public class BinarySearchTreeTrying<T extends Comparable> {
     }
 
     /**
+     * 获取二叉树节点数
+     * @param nodeTrying
+     * @return
+     */
+    public int size(BinaryNodeTrying<T> nodeTrying) {
+        if (null == nodeTrying) {
+            return 0;
+        }
+        return size(nodeTrying.getLeftNode()) + 1 + size(nodeTrying.getRightNode());
+    }
+
+    /**
+     * 判断是否存在
+     * @param data
+     * @return
+     */
+    public boolean isExist(T data) {
+
+        if (null == root) {
+            return false;
+        }
+        BinaryNodeTrying nodeTrying = isExist(data, root);
+        if (nodeTrying == null) {
+            return false;
+        } else if (data.compareTo(nodeTrying.getData()) == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private BinaryNodeTrying<T> isExist(T data, BinaryNodeTrying<T> nodeTrying) {
+        if (null == nodeTrying) {
+            return null;
+        }
+
+        int left = data.compareTo(nodeTrying.getData());
+
+        if (left < 0) {
+            if (nodeTrying.getLeftNode() == null) {
+                return null;
+            }
+            isExist(data, nodeTrying.getLeftNode());
+        } else if (left > 0) {
+            if (nodeTrying.getRightNode() == null) {
+                return null;
+            }
+            isExist(data, nodeTrying.getRightNode());
+        }
+
+        return nodeTrying;
+    }
+
+    /**
      * 查询右子树序列中不存在左子树的节点
      * @param nodeTrying
      * @return
