@@ -142,6 +142,24 @@ public class BinarySearchTreeTrying<T extends Comparable> {
     }
 
     /**
+     * 先序遍历
+     * 先遍历根节点，再遍历左子树 若左子树存在子节点则继续遍历，然后遍历右子树
+     * @param nodeTrying
+     * @return
+     */
+    public String preOrderTraversal(BinaryNodeTrying<T> nodeTrying) {
+        if (null == nodeTrying) {
+            return null;
+        }
+
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(nodeTrying.getData() + ",");
+        stringBuffer.append(preOrderTraversal(nodeTrying.getLeftNode()));
+        stringBuffer.append(preOrderTraversal(nodeTrying.getRightNode()));
+        return stringBuffer.toString();
+    }
+
+    /**
      * 查询右子树序列中不存在左子树的节点
      * @param nodeTrying
      * @return
