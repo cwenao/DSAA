@@ -149,7 +149,7 @@ public class BinarySearchTreeTrying<T extends Comparable> {
      */
     public String preOrderTraversal(BinaryNodeTrying<T> nodeTrying) {
         if (null == nodeTrying) {
-            return null;
+            return "";
         }
 
         StringBuffer stringBuffer = new StringBuffer();
@@ -157,6 +157,45 @@ public class BinarySearchTreeTrying<T extends Comparable> {
         stringBuffer.append(preOrderTraversal(nodeTrying.getLeftNode()));
         stringBuffer.append(preOrderTraversal(nodeTrying.getRightNode()));
         return stringBuffer.toString();
+    }
+
+    /**
+     * 中序遍历
+     * 中序遍历先遍历左子树， 再遍历根节点，最后遍历右子树
+     * @param nodeTrying
+     * @return
+     */
+    public String inOrderTraversal(BinaryNodeTrying<T> nodeTrying){
+
+        if (nodeTrying == null) {
+            return "";
+        }
+
+        StringBuffer stringBuffer = new StringBuffer();
+
+        stringBuffer.append(inOrderTraversal(nodeTrying.getLeftNode()));
+        stringBuffer.append(nodeTrying.getData() + ",");
+        stringBuffer.append(inOrderTraversal(nodeTrying.getRightNode()));
+
+        return stringBuffer.toString();
+    }
+
+    /**
+     * 后序遍历：
+     * 先遍历左子树，再遍历右子树，最后遍历根节点
+     * @param nodeTrying
+     * @return
+     */
+    public String postOrderTraversal(BinaryNodeTrying<T> nodeTrying) {
+        if (null == nodeTrying) {
+            return "";
+        }
+        StringBuffer sb = new StringBuffer();
+        sb.append(nodeTrying.getLeftNode());
+        sb.append(nodeTrying.getRightNode());
+        sb.append(nodeTrying.getData());
+
+        return sb.toString();
     }
 
     /**
@@ -189,6 +228,5 @@ public class BinarySearchTreeTrying<T extends Comparable> {
         }
         return findExcludeRightNode(nodeTrying.getLeftNode());
     }
-
 
 }
