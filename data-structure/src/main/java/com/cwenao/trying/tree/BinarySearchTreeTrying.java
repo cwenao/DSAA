@@ -4,6 +4,10 @@
  */
 package com.cwenao.trying.tree;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Queue;
+
 /**
  * 树定义
  * 结点的度：结点拥有的子树的数目。
@@ -196,6 +200,31 @@ public class BinarySearchTreeTrying<T extends Comparable> {
         sb.append(nodeTrying.getData());
 
         return sb.toString();
+    }
+
+    /**
+     * 层序遍历：
+     * 从左到右进行层序进行遍历
+     * @param nodeTrying
+     * @return
+     */
+    public String levelOrderTraversal(BinaryNodeTrying<T> nodeTrying) {
+        Queue<BinaryNodeTrying> queue = new ArrayDeque<>();
+        StringBuffer stringBuffer = new StringBuffer();
+
+        BinaryNodeTrying temp = this.root;
+        while (temp != null) {
+            stringBuffer.append(temp.getData());
+            if (temp.getLeftNode() != null) {
+                queue.add(temp.getLeftNode());
+            }
+            if (temp.getRightNode() != null) {
+                queue.add(temp.getRightNode());
+            }
+            temp = queue.poll();
+        }
+
+        return stringBuffer.toString();
     }
 
     /**
