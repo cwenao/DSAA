@@ -228,6 +228,39 @@ public class BinarySearchTreeTrying<T extends Comparable> {
     }
 
     /**
+     * 获取最小节点
+     * @param nodeTrying
+     * @return
+     */
+    public BinaryNodeTrying<T> min(BinaryNodeTrying<T> nodeTrying) {
+
+        if (nodeTrying == null) {
+            throw new IllegalArgumentException("The Node can not NULL");
+        }
+        if (nodeTrying.getLeftNode() == null) {
+            return nodeTrying;
+        }
+        return min(nodeTrying.getRightNode());
+    }
+
+    /**
+     * 获取最大节点
+     * @param nodeTrying
+     * @return
+     */
+    public BinaryNodeTrying<T> max(BinaryNodeTrying<T> nodeTrying) {
+        if (nodeTrying == null) {
+            throw new IllegalArgumentException("The Node can not NULL");
+        }
+        if (nodeTrying.getRightNode() == null) {
+            return nodeTrying;
+        }
+        return max(nodeTrying.getRightNode());
+    }
+
+
+
+    /**
      * 查询右子树序列中不存在左子树的节点
      * @param nodeTrying
      * @return
