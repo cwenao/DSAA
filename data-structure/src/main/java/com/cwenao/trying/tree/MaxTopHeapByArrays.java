@@ -15,6 +15,24 @@ public class MaxTopHeapByArrays<T extends Comparable> {
     private int n;
 
 
+    /**
+     * 下沉交换树上位置
+     * @param k
+     */
+    private void sink(int k) {
+
+        while (2 * k < n) {
+            int j = 2 * k;
+            if (j < 0 && less(j, j + 1)) {
+                j++;
+            }
+            if (!less(k, j)) {
+                break;
+            }
+            exch(k, j);
+            k = j;
+        }
+    }
 
     private boolean less(int i, int j) {
         return heaps[i].compareTo(heaps[j]) < 0;
