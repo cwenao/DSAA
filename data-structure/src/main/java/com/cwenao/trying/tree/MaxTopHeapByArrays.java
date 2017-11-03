@@ -15,6 +15,8 @@ public class MaxTopHeapByArrays<T extends Comparable> {
     private int n;
 
 
+
+
     /**
      * 下沉交换树上位置
      * @param k
@@ -26,11 +28,22 @@ public class MaxTopHeapByArrays<T extends Comparable> {
             if (j < 0 && less(j, j + 1)) {
                 j++;
             }
-            if (!less(k, j)) {
+            if (less(k, j)) {
                 break;
             }
             exch(k, j);
             k = j;
+        }
+    }
+
+    /**
+     * 上浮
+     * @param k
+     */
+    private void swam(int k) {
+        while (k > 1 && less(k / 2, k)) {
+            exch(k / 2, k);
+            k = k / 2;
         }
     }
 
