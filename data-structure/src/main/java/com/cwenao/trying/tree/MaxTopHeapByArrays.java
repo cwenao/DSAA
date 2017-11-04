@@ -14,8 +14,35 @@ public class MaxTopHeapByArrays<T extends Comparable> {
 
     private int n;
 
+    private MaxTopHeapByArrays(int len) {
+        this.n = len;
+        heaps = (T[]) new Object[this.n + 1];
+    }
 
+    /**
+     * 插入
+     * @param key
+     */
+    public void insert(T key) {
+        if (n >= heaps.length - 1) {
+            resize(n);
+        }
+        heaps[++n] = key;
+        swam(n);
+    }
 
+    /**
+     * 扩展树
+     * @param initCapacity
+     */
+    private void resize(int initCapacity) {
+        T[] tmp = (T[]) new Object[2 * initCapacity];
+
+        for (int i = 0; i <= n; i++) {
+            tmp[i] = heaps[i];
+        }
+        heaps = tmp;
+    }
 
     /**
      * 下沉交换树上位置
