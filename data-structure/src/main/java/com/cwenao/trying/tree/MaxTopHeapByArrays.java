@@ -32,6 +32,29 @@ public class MaxTopHeapByArrays<T extends Comparable> {
     }
 
     /**
+     * 删除特定Key
+     * @param key
+     * @return
+     */
+    public T remove(T key) {
+        int index = -1;
+        for (int i = 1; i < n; i++) {
+            if (heaps[i].compareTo(key) == 0) {
+                index = i;
+            }
+        }
+        if (index == -1) {
+            return null;
+        }
+        T tmp = heaps[index];
+        exch(index, n--);
+        sink(1);
+        heaps[n + 1] = null;
+
+        return tmp;
+    }
+
+    /**
      * 扩展树
      * @param initCapacity
      */
