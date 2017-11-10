@@ -23,16 +23,26 @@ public class RBTreeTrying<T extends Comparable> implements Serializable{
 
     private static final boolean BLACK = true;
 
-    
+    private RBTNodeTrying root;
+
+
+    public RBTreeTrying() {
+        root = null;
+    }
+
+
+    public RBTNodeTrying put(T data) {
+        return null;
+    }
 
     /**
      * 逆时针旋转
      * @param rbtNodeTrying
      * @return
      */
-    private RBTNodeTrying<T> leftRotation(RBTNodeTrying<T> rbtNodeTrying) {
+    private RBTNodeTrying leftRotation(RBTNodeTrying rbtNodeTrying) {
 
-        RBTNodeTrying<T> tmp = rbtNodeTrying.getRight();
+        RBTNodeTrying tmp = rbtNodeTrying.getRight();
 
         rbtNodeTrying.setRight(tmp.getLeft());
         tmp.setLeft(rbtNodeTrying);
@@ -44,11 +54,11 @@ public class RBTreeTrying<T extends Comparable> implements Serializable{
 
     /**
      * 顺时针旋转
-     * @param rbtNodeTrying
+     ∫* @param rbtNodeTrying
      * @return
      */
-    private RBTNodeTrying<T> rightRotation(RBTNodeTrying<T> rbtNodeTrying) {
-        RBTNodeTrying<T> tmp = rbtNodeTrying.getLeft();
+    private RBTNodeTrying rightRotation(RBTNodeTrying rbtNodeTrying) {
+        RBTNodeTrying tmp = rbtNodeTrying.getLeft();
 
         rbtNodeTrying.setLeft(tmp.getRight());
         tmp.setRight(rbtNodeTrying);
@@ -59,4 +69,11 @@ public class RBTreeTrying<T extends Comparable> implements Serializable{
         return tmp;
     }
 
+    public boolean isRed(RBTNodeTrying nodeTrying) {
+        return RED == nodeTrying.isColor();
+    }
+
+    public int size(RBTNodeTrying nodeTrying) {
+        return nodeTrying.getSize();
+    }
 }
