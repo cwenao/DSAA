@@ -23,8 +23,13 @@ public class RBTreeTrying<T extends Comparable> implements Serializable{
 
     private static final boolean BLACK = true;
 
+    
 
-
+    /**
+     * 逆时针旋转
+     * @param rbtNodeTrying
+     * @return
+     */
     private RBTNodeTrying<T> leftRotation(RBTNodeTrying<T> rbtNodeTrying) {
 
         RBTNodeTrying<T> tmp = rbtNodeTrying.getRight();
@@ -37,6 +42,11 @@ public class RBTreeTrying<T extends Comparable> implements Serializable{
         return tmp;
     }
 
+    /**
+     * 顺时针旋转
+     * @param rbtNodeTrying
+     * @return
+     */
     private RBTNodeTrying<T> rightRotation(RBTNodeTrying<T> rbtNodeTrying) {
         RBTNodeTrying<T> tmp = rbtNodeTrying.getLeft();
 

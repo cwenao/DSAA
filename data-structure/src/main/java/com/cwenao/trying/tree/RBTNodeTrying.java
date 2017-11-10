@@ -14,7 +14,7 @@ public class RBTNodeTrying<T extends Comparable> {
     private boolean color;
     private RBTNodeTrying<T> left;
     private RBTNodeTrying<T> right;
-    private RBTNodeTrying<T> parent;
+    private int size;
 
     public RBTNodeTrying(T data) {
         this(data, true);
@@ -61,13 +61,5 @@ public class RBTNodeTrying<T extends Comparable> {
 
     public void setRight(RBTNodeTrying<T> right) {
         this.right = right;
-    }
-
-    public RBTNodeTrying<T> getParent() {
-        return parent;
-    }
-
-    public void setParent(RBTNodeTrying<T> parent) {
-        this.parent = parent;
     }
 }
