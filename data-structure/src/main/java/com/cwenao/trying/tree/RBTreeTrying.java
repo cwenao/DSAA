@@ -69,6 +69,8 @@ public class RBTreeTrying<T extends Comparable> implements Serializable{
         return tmp;
     }
 
+
+
     public boolean isRed(RBTNodeTrying nodeTrying) {
         return RED == nodeTrying.isColor();
     }
