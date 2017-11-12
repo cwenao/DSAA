@@ -17,7 +17,7 @@ import java.io.Serializable;
  * @author cwenao
  * @version $Id RBTreeTrying.java, v 0.1 2017-11-06 08:29 cwenao Exp $$
  */
-public class RBTreeTrying<T extends Comparable> implements Serializable{
+public class RBTreeTrying<Key extends Comparable<Key>, Value> implements Serializable{
 
     private static final boolean RED = false;
 
@@ -30,9 +30,49 @@ public class RBTreeTrying<T extends Comparable> implements Serializable{
         root = null;
     }
 
+    public RBTNodeTrying put(Key key, Value value) {
 
-    public RBTNodeTrying put(T data) {
-        return null;
+        root = put(root, key, value);
+        root.setColor(BLACK);
+
+        return root;
+    }
+
+    public RBTNodeTrying put(RBTNodeTrying rbtNodeTrying, Key key, Value value) {
+        if (rbtNodeTrying == null) {
+            rbtNodeTrying = new RBTNodeTrying(key, value, this.RED);
+        }
+
+        int left = key.compareTo((Key) rbtNodeTrying.getKey());
+
+        if (left < 0) {
+            rbtNodeTrying.setLeft(put(rbtNodeTrying.getLeft(), key, value));
+        } else if (left > 0) {
+            rbtNodeTrying.setRight(put(rbtNodeTrying.getRight(), key, value));
+        } else {
+            rbtNodeTrying.setValue(value);
+        }
+
+        if (isRed(rbtNodeTrying.getRight()) && !isRed(rbtNodeTrying.getLeft())) {
+            rbtNodeTrying = leftRotation(rbtNodeTrying);
+        }
+        if (isRed(rbtNodeTrying.getLeft()) && !isRed(rbtNodeTrying.getRight())) {
+            rbtNodeTrying = rightRotation(rbtNodeTrying);
+        }
+
+        if (isRed(rbtNodeTrying.getLeft()) && isRed(rbtNodeTrying.getRight())) {
+            flipColor(rbtNodeTrying);
+        }
+        rbtNodeTrying.setSize(rbtNodeTrying.getLeft().getSize() + rbtNodeTrying.getRight().getSize() + 1);
+
+        return rbtNodeTrying;
+    }
+
+
+    private void flipColor(RBTNodeTrying rbtNodeTrying) {
+        rbtNodeTrying.setColor(!rbtNodeTrying.isColor());
+        rbtNodeTrying.getLeft().setColor(!rbtNodeTrying.getLeft().isColor());
+        rbtNodeTrying.getRight().setColor(!rbtNodeTrying.getRight().isColor());
     }
 
     /**
@@ -68,8 +108,6 @@ public class RBTreeTrying<T extends Comparable> implements Serializable{
 
         return tmp;
     }
-
-
 
     public boolean isRed(RBTNodeTrying nodeTrying) {
         return RED == nodeTrying.isColor();

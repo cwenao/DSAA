@@ -33,12 +33,20 @@ public class RBTNodeTrying<Key extends Comparable<Key> ,Value> {
         this.right = right;
     }
 
-    public Key getData() {
+    public Key getKey() {
         return key;
     }
 
-    public void setData(Key key) {
+    public void setKey(Key key) {
         this.key = key;
+    }
+
+    public Value getValue() {
+        return value;
+    }
+
+    public void setValue(Value value) {
+        this.value = value;
     }
 
     public boolean isColor() {
@@ -49,19 +57,19 @@ public class RBTNodeTrying<Key extends Comparable<Key> ,Value> {
         this.color = color;
     }
 
-    public RBTNodeTrying getLeft() {
+    public RBTNodeTrying<Key, Value> getLeft() {
         return left;
     }
 
-    public void setLeft(RBTNodeTrying left) {
+    public void setLeft(RBTNodeTrying<Key, Value> left) {
         this.left = left;
     }
 
-    public RBTNodeTrying getRight() {
+    public RBTNodeTrying<Key, Value> getRight() {
         return right;
     }
 
-    public void setRight(RBTNodeTrying right) {
+    public void setRight(RBTNodeTrying<Key, Value> right) {
         this.right = right;
     }
 
