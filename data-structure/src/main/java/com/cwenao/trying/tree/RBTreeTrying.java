@@ -70,9 +70,11 @@ public class RBTreeTrying<Key extends Comparable<Key>, Value> implements Seriali
 
 
     private void flipColor(RBTNodeTrying rbtNodeTrying) {
+
         rbtNodeTrying.setColor(!rbtNodeTrying.isColor());
         rbtNodeTrying.getLeft().setColor(!rbtNodeTrying.getLeft().isColor());
         rbtNodeTrying.getRight().setColor(!rbtNodeTrying.getRight().isColor());
+
     }
 
     /**
@@ -107,6 +109,23 @@ public class RBTreeTrying<Key extends Comparable<Key>, Value> implements Seriali
         rbtNodeTrying.getRight().setColor(RED);
 
         return tmp;
+    }
+
+    public RBTNodeTrying balance(RBTNodeTrying<Key, Value> rbtNodeTrying) {
+        if (isRed(rbtNodeTrying.getRight())) {
+            rbtNodeTrying = leftRotation(rbtNodeTrying);
+        }
+        if (isRed(rbtNodeTrying.getLeft()) && isRed(rbtNodeTrying.getLeft().getLeft())) {
+            rightRotation(rbtNodeTrying);
+        }
+        if (isRed(rbtNodeTrying.getLeft()) && isRed(rbtNodeTrying.getRight())) {
+            flipColor(rbtNodeTrying);
+        }
+
+        rbtNodeTrying.setSize(rbtNodeTrying.getLeft().getSize() + rbtNodeTrying.getRight().getSize() + 1);
+
+        return rbtNodeTrying;
+
     }
 
     public boolean isRed(RBTNodeTrying nodeTrying) {
