@@ -132,10 +132,26 @@ public class RBTreeTrying<Key extends Comparable<Key>, Value> implements Seriali
 
     }
 
+    /**
+     * 删除最大值
+     * @param rbtNodeTrying
+     * @return
+     */
     private RBTNodeTrying delMax(RBTNodeTrying<Key, Value> rbtNodeTrying) {
+        if (isRed(rbtNodeTrying.getLeft())) {
+            rbtNodeTrying = rightRotation(rbtNodeTrying);
+        }
+        if (rbtNodeTrying.getRight() == null) {
+            return null;
+        }
+
+        if (!isRed(rbtNodeTrying.getRight()) && !isRed(rbtNodeTrying.getRight().getLeft())) {
+            rbtNodeTrying = moveRight(rbtNodeTrying);
+        }
+        rbtNodeTrying.setRight(delMax(rbtNodeTrying.getRight()));
+        return balance(rbtNodeTrying);
 
     }
-
     private RBTNodeTrying moveRight(RBTNodeTrying<Key, Value> rbtNodeTrying) {
         flipColor(rbtNodeTrying);
         if (isRed(rbtNodeTrying.getLeft().getLeft())) {
