@@ -128,8 +128,14 @@ public class RBTreeTrying<Key extends Comparable<Key>, Value> implements Seriali
 
     }
 
-    public RBTNodeTrying delMax() {
-
+    public void delMax() {
+        if (!isRed(root.getLeft()) && !isRed(root.getRight())) {
+            root.setColor(RED);
+        }
+        root = delMax(root);
+        if (root != null) {
+            root.setColor(BLACK);
+        }
     }
 
     /**
