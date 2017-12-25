@@ -4,6 +4,10 @@
  */
 package com.cwenao.trying.stackandqueue;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * @author cwenao
  * @version $Id LRUCacheImplementWithQuery.java, v 0.1 2017-11-25 08:43 cwenao Exp $$
@@ -12,7 +16,9 @@ package com.cwenao.trying.stackandqueue;
  * The most recently used pages will be near front end and least recently pages will be near rear end.
  */
 public class LRUCacheImplementWithQuery {
+    private LinkedList linkedList = new LinkedList();
+    public LRUCacheImplementWithQuery(){
 
-
+    }
 
 }
