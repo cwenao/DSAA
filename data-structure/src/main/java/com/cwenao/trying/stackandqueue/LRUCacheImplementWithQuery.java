@@ -4,9 +4,8 @@
  */
 package com.cwenao.trying.stackandqueue;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
  * @author cwenao
@@ -16,9 +15,32 @@ import java.util.LinkedList;
  * The most recently used pages will be near front end and least recently pages will be near rear end.
  */
 public class LRUCacheImplementWithQuery {
-    private LinkedList linkedList = new LinkedList();
-    public LRUCacheImplementWithQuery(){
+    private ConcurrentLinkedDeque deque = new ConcurrentLinkedDeque();
+
+    public void refer(String used) {
+
+        if (!deque.contains(used)) {
+            deque.addFirst(used);
+        } else {
+            deque.remove(used);
+            deque.addFirst(used);
+        }
 
     }
+
+    public static void main(String[] args) {
+        LRUCacheImplementWithQuery lruCacheImplementWithQuery = new LRUCacheImplementWithQuery();
+        lruCacheImplementWithQuery.refer("1");
+        lruCacheImplementWithQuery.refer("3");
+        lruCacheImplementWithQuery.refer("4");
+        lruCacheImplementWithQuery.refer("5");
+        lruCacheImplementWithQuery.refer("6");
+        lruCacheImplementWithQuery.refer("1");
+
+        for (Object test : lruCacheImplementWithQuery.deque.toArray()) {
+            System.out.println(test);
+        }
+    }
+
 
 }
