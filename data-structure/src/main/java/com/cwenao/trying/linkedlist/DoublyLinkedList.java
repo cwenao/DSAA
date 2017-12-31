@@ -50,6 +50,7 @@ public class DoublyLinkedList {
         Node pre = null;
         if (tmp != null && tmp.data == key) {
             head = tmp.next;
+            head.pre = null;
             return;
         }
 
@@ -61,8 +62,10 @@ public class DoublyLinkedList {
         if (tmp == null) {
             return;
         }
+        Node nextTmp = tmp.next;
+        pre.next = nextTmp;
+        nextTmp.pre = pre;
 
-        pre.next = tmp.next;
     }
 
     public void deleteNodeWithPosition(int position) {
@@ -74,6 +77,7 @@ public class DoublyLinkedList {
 
         if (position == 0) {
             head = tmp.next;
+            head.pre = null;
             return;
         }
 
@@ -84,8 +88,9 @@ public class DoublyLinkedList {
         if (tmp == null || tmp.next == null) {
             return;
         }
-
-        tmp.next = tmp.next.next;
+        Node nextTmp = tmp.next.next;
+        tmp.next = nextTmp;
+        nextTmp.pre = tmp;
     }
 
 }
