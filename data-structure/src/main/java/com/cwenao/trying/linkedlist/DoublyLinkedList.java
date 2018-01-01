@@ -93,4 +93,23 @@ public class DoublyLinkedList {
         nextTmp.pre = tmp;
     }
 
+    public void reverse() {
+        Node tmp = null;
+        Node current = head;
+        if (current == null) {
+            return;
+        }
+
+        while (current != null) {
+            tmp = current.pre;
+            current.pre = current.next;
+            current.next = tmp;
+            current = current.pre;
+        }
+
+        if (tmp != null) {
+            head = tmp.pre;
+        }
+    }
+
 }
