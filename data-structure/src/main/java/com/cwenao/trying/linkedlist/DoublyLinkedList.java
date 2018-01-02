@@ -112,4 +112,18 @@ public class DoublyLinkedList {
         }
     }
 
+    public Node lastNode(Node node) {
+        if (node ==null) {
+            return null;
+        }
+
+        while (node.next != null) {
+            node = node.next;
+        }
+        return node;
+    }
+
+    private Node partition(Node low, Node high) {
+
+    }
 }
