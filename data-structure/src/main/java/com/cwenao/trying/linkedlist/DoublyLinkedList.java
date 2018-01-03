@@ -123,7 +123,40 @@ public class DoublyLinkedList {
         return node;
     }
 
-    private Node partition(Node low, Node high) {
+    public void quickSort(Node node) {
+        Node head = lastNode(node);
+
+        quickSortToPartition(node, head);
 
     }
+    private Node partition(Node low, Node high) {
+        int x = high.data;
+        Node i = low.pre;
+
+        for (Node j = i; j!=high;j= j.next) {
+            if (j.data <= x) {
+                i = (i == null) ? low : i.next;
+                int tmp = i.data;
+                i.data = j.data;
+                j.data = tmp;
+            }
+        }
+
+        i = (i == null) ? low : i.next;
+        int tmp = i.data;
+        i.data = high.data;
+        high.data = tmp;
+
+        return i;
+    }
+
+    private void quickSortToPartition(Node low, Node high) {
+        if (high !=null && low != high && low != high.next) {
+            Node tmp = partition(low, high);
+
+            quickSortToPartition(low, tmp.pre);
+            quickSortToPartition(tmp.next, high);
+        }
+    }
+
 }
