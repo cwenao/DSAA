@@ -10,5 +10,8 @@ package com.cwenao.jvm;
  * @version $Id TestClass.java, v1.0.0 2020-05-13 15:49 cwenao Exp $$
  */
 public class TestClass {
-
+    private int m;
+    public int inc(){
+        return m+1;
+    }
 }

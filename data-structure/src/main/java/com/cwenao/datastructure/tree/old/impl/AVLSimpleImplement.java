@@ -2,7 +2,9 @@
  * Company
  * Copyright (C) 2014-2017 All Rights Reserved.
  */
-package com.cwenao.datastructure.tree;
+package com.cwenao.datastructure.tree.old.impl;
+
+import com.cwenao.datastructure.tree.AVLNode;
 
 /**
  * AVL 树平衡：任何两个节点间的高度差最大为1

@@ -14,20 +14,22 @@ public class RBTNode<T extends Comparable> {
     private boolean color;
     private RBTNode<T> leftNode;
     private RBTNode<T> rightNode;
+    private RBTNode<T> parent;
 
     public RBTNode(T data) {
         this(data, true);
     }
 
     public RBTNode(T data, boolean color) {
-        this(data, color, null, null);
+        this(data, color, null, null,null);
     }
 
-    public RBTNode(T data, boolean color, RBTNode<T> leftNode, RBTNode<T> rightNode) {
+    public RBTNode(T data, boolean color, RBTNode<T> leftNode, RBTNode<T> rightNode,RBTNode<T> parent) {
         this.data = data;
         this.color = color;
         this.leftNode = leftNode;
         this.rightNode = rightNode;
+        this.parent = parent;
     }
 
     public T getData() {
@@ -62,4 +64,11 @@ public class RBTNode<T extends Comparable> {
         this.rightNode = rightNode;
     }
 
+    public RBTNode<T> getParent() {
+        return parent;
+    }
+
+    public void setParent(RBTNode<T> parent) {
+        this.parent = parent;
+    }
 }

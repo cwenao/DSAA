@@ -1,12 +1,36 @@
+
+plugins {
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE' apply false
+    id 'java'
+}
+
 group 'com.cwenao'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
-
 sourceCompatibility = 1.8
+
 
 repositories {
     mavenCentral()
+}
+
+
+configure(allprojects){ project ->
+
+    apply plugin: "io.spring.dependency-management"
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-starter:2.3.1.RELEASE"
+        }
+        dependencies {
+            dependency group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+            dependency "org.springframework.boot:spring-boot-starter:2.3.1.RELEASE"
+            dependency "org.springframework.boot:spring-boot-web:2.3.1.RELEASE"
+        }
+    }
+
 }
 
 dependencies {

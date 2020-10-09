@@ -2,40 +2,46 @@
  * Company
  * Copyright (C) 2014-2017 All Rights Reserved.
  */
-package com.cwenao.datastructure.tree;
+package com.cwenao.datastructure.tree.old.impl;
 
 import com.cwenao.util.DrawGraphForSearch;
 import com.cwenao.util.Vertexes;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-
 /**
+ * 深度优先遍历搜索
  * @author cwenao
- * @version $Id BreadthFirstSearchPath.java, v 0.1 2017-07-07 8:17 cwenao Exp $$
+ * @version $Id DepthFirstSearchOne.java, v 0.1 2017-07-05 8:35 cwenao Exp $$
  */
-public class BreadthFirstSearchPath {
+public class DepthFirstSearchOne {
 
-    private static final int MAX_VERTEXES = 9;
     private static Vertexes[] vertexes;
     private static int[][] adjacent;
 
-    public static void entrySearar (Integer start) {
-        Queue queue = new ArrayDeque();
-        queue.add(start);
+    private static final int MAX_VERTEXES = 9;
 
-        while (!queue.isEmpty()) {
-            int x = (int) queue.poll();
-            vertexes[x].setVisited(true);
-
-            for(int i =0;i<MAX_VERTEXES;i++) {
-                if (adjacent[x][i] == 1 && vertexes[i].getVisited() == false) {
-                    printVertexe(i);
-                    vertexes[i].setVisited(true);
-                    queue.offer(i);
-                }
+    /**
+     * 遍历入口
+     */
+    public static void dfsOneTraverse() {
+        for(int i =0; i<MAX_VERTEXES;i++) {
+            if (vertexes[i].getVisited() == false) {
+                traverse(i);
             }
+        }
+    }
 
+    /**
+     * 递归遍历
+     * @param i
+     */
+    private static void traverse(int i) {
+        vertexes[i].setVisited(true);
+
+        for(int j =0;j<MAX_VERTEXES;j++) {
+            if (adjacent[i][j] == 1 && vertexes[j].getVisited() == false) {
+                printVertexe(j);
+                traverse(j);
+            }
         }
     }
 
@@ -64,21 +70,19 @@ public class BreadthFirstSearchPath {
             Vertexes vertexesX = new Vertexes(ver[i]);
             vertexes[i] = vertexesX;
         }
+        drawGraphForSearch.setVertexes(vertexes);
 
         drawGraphForSearch.addEdge(0,1);
         drawGraphForSearch.addEdge(0,2);
-        drawGraphForSearch.addEdge(1,2);
         drawGraphForSearch.addEdge(2,3);
-        drawGraphForSearch.addEdge(2,5);
         drawGraphForSearch.addEdge(3,5);
         drawGraphForSearch.addEdge(5,8);
 
-        drawGraphForSearch.setVertexes(vertexes);
         adjacent = drawGraphForSearch.getAdjacent();
 
         printAdjacent(adjacent);
-
-        entrySearar(0);
+        printVertexe(0);
+        dfsOneTraverse();
     }
 }
 

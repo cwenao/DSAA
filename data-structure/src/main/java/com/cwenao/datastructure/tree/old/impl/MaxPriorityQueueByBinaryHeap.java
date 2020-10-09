@@ -2,7 +2,7 @@
  * Company
  * Copyright (C) 2014-2017 All Rights Reserved.
  */
-package com.cwenao.datastructure.tree;
+package com.cwenao.datastructure.tree.old.impl;
 
 import java.util.Iterator;
 import java.util.Spliterator;

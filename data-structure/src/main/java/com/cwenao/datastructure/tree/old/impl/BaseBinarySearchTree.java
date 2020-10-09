@@ -2,8 +2,10 @@
  * Company
  * Copyright (C) 2014-2017 All Rights Reserved.
  */
-package com.cwenao.datastructure.tree;
+package com.cwenao.datastructure.tree.old.impl;
 
+import com.cwenao.datastructure.tree.BaseTree;
+import com.cwenao.datastructure.tree.BinaryNode;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -19,7 +21,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author cwenao
  * @version $Id BaseBinarySearchTree.java, v 0.1 2017-07-27 23:54 cwenao Exp $$
  */
-public  class BaseBinarySearchTree<T extends Comparable> implements BaseTree<T>{
+public  class BaseBinarySearchTree<T extends Comparable> implements BaseTree<T> {
 
     protected BinaryNode<T> root;
 

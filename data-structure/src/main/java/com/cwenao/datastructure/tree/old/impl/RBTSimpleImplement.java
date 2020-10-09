@@ -2,8 +2,9 @@
  * Company
  * Copyright (C) 2014-2017 All Rights Reserved.
  */
-package com.cwenao.datastructure.tree;
+package com.cwenao.datastructure.tree.old.impl;
 
+import com.cwenao.datastructure.tree.RBTNode;
 import java.io.Serializable;
 
 /**
