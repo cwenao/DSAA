@@ -1,7 +1,7 @@
 /**
  * Company Copyright (C) 2014-2020 All Rights Reserved.
  */
-package com.cwenao.leetcode;
+package com.cwenao.leetcode.first;
 
 /**
  *
