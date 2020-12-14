@@ -1,4 +1,4 @@
-/**
+/*
  * Company Copyright (C) 2014-2020 All Rights Reserved.
  */
 package com.cwenao.datastructure.tree.current.impl;

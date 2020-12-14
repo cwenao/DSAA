@@ -1,3 +1,4 @@
 rootProject.name = 'DSAA'
 include 'data-structure'
+include 'data-coding'
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Company Copyright (C) 2014-2019 All Rights Reserved.
  */
 package com.cwenao.concurrent;

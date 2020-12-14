@@ -1,4 +1,4 @@
-/**
+/*
  * Company Copyright (C) 2014-2019 All Rights Reserved.
  */
 package com.cwenao.aha;
@@ -11,7 +11,7 @@ package com.cwenao.aha;
  */
 public class BubbleSort {
 
-    public static void  bubbleSort(int source[]) {
+    public static void  bubbleSort(int[] source) {
 
         if (source == null || source.length == 0) {
             return;
@@ -30,10 +30,10 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int test[] = new int[]{1,9,4,3,50,25};
+        int[] test = new int[]{1,9,4,3,50,25};
         bubbleSort(test);
-        for (int i = 0; i <test.length ; i++) {
-            System.out.println(test[i]);
+        for (int i : test) {
+            System.out.println(i);
         }
     }
 
