@@ -50,10 +50,22 @@ public class ClimbStairsByOneOrTwoStep {
         return result;
     }
 
+    private int climbStairsByDPII(int n) {
+        //dp[i]: 表示n[0:i]台阶方法次数
+        int[] dp = new int[n + 1];
+        dp[0] =1;
+        dp[1] =1;
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+
     public static void main(String[] args) {
         ClimbStairsByOneOrTwoStep climbStairs = new ClimbStairsByOneOrTwoStep();
         System.out.println(climbStairs.climbStairs(44));
         System.out.println(climbStairs.climbStairsByDP(44));
+        System.out.println(climbStairs.climbStairsByDPII(44));
     }
 
 }
