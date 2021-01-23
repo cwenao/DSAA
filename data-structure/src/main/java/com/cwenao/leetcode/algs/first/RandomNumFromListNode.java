@@ -4,7 +4,6 @@
  */
 package com.cwenao.leetcode.algs.first;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -35,12 +34,14 @@ public class RandomNumFromListNode {
 
         int result = 0;
         int index = 0;
-
-        while (node != null) {
+        ListNode p = node;
+        while (p != null) {
+            // 生成一个 [0, i) 之间的整数
+            // 这个整数等于 0 的概率就是 1/i
             if (random.nextInt(++index) == 0) {
-                result = node.val;
+                result = p.val;
             }
-            node = node.next;
+            p = p.next;
         }
 
         return result;
