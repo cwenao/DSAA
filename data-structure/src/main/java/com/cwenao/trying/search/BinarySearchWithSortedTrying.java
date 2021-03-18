@@ -23,7 +23,7 @@ public class BinarySearchWithSortedTrying {
         }
 
         if (target > array[mid]) {
-            return binarySearchIndex(array, target, low + 1, high);
+            return binarySearchIndex(array, target, mid + 1, high);
         } else {
             return binarySearchIndex(array, target, low, mid - 1);
         }
