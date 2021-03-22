@@ -24,6 +24,7 @@ public class LengthOfLongestSubstring {
     private int lengthOfLongestSubstringByWindow(String s) {
 
         Map<Character, Integer> window = new HashMap<>();
+
         char[] sources = s.toCharArray();
 
         int fast = 0, slow = 0;

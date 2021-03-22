@@ -62,7 +62,7 @@ public class BinarySearchForRange {
 
     public static void main(String[] args) {
         BinarySearchForRange searchForRange = new BinarySearchForRange();
-        int[] test = new int[]{5,7,7,8,8,10};
+        int[] test = new int[]{5,7,7,8,9,8,8,10};
         int target = 8;
         int[] range = searchForRange.searchRange(test, target);
         for (int x : range) {
