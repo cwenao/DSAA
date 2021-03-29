@@ -53,4 +53,11 @@ public class RemoveCoveredIntervals {
         return intervals.length - num;
     }
 
+    public static void main(String[] args) {
+//        System.out.println(1l << 32);
+        System.out.println(4294967210l >>> 5); //134217725
+//        System.out.println(4294967210l/32);
+        System.out.println(-2l >> 32);
+    }
+
 }
