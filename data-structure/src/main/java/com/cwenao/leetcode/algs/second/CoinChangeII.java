@@ -18,14 +18,13 @@ public class CoinChangeII {
 
     private int changeByDP(int amount, int[] coins) {
 
-        //dp[i][j]: i个银币组合值为j的组合个数
-        //dp[i][j] = dp[i-1][j] + dp[i][j-coins[i-1]]
+        //dp[i][j]: coins[0..i]个银币和为j的组合个数
+        //dp[i][j] = dp[i-1][j] + dp[i][j-nums[i-1]]
 
-        int[][] dp = new int[coins.length + 1][amount + 1];
         int n = coins.length;
+        int[][] dp = new int[n + 1][amount + 1];
 
-        //初始化DP,和为0的不存在
-        for (int i = 0; i <=n ; i++) {
+        for (int i = 0; i <= n; i++) {
             dp[i][0] = 1;
         }
 
@@ -38,6 +37,8 @@ public class CoinChangeII {
                 }
             }
         }
+
         return dp[n][amount];
     }
 }
+
